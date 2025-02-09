@@ -3,10 +3,8 @@ package com.project.physio_backend.Entities.Reports;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
-import com.project.physio_backend.Entities.Problems.Problem;
+import com.project.physio_backend.Entities.Users.User;
 
 @Data
 @Entity
@@ -15,7 +13,7 @@ public class Report {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "report_id", nullable = false)
+  @Column(name = "report_ID", nullable = false)
   private Long reportID;
 
   private LocalDateTime timestamp;
@@ -23,21 +21,16 @@ public class Report {
   @Column(name = "user_problem_image")
   private String userProblemImage;
 
-  @ManyToMany
-  @JoinTable(name = "report_problems", joinColumns = @JoinColumn(name = "report_id"), inverseJoinColumns = @JoinColumn(name = "problem_id"))
-  private List<Problem> problems = new ArrayList<>();
+  @ManyToOne
+  @JoinColumn(name = "user_ID", nullable = false)
+  private User user;
 
   public Report() {
   }
 
-  public Report(List<Problem> problems, String userProblemImage) {
-    this.problems = problems;
+  public Report(String userProblemImage) {
     this.userProblemImage = userProblemImage;
     this.timestamp = LocalDateTime.now();
-  }
-
-  public void addProblem(Problem problem) {
-    problems.add(problem);
   }
 
   @PrePersist

@@ -2,6 +2,8 @@ package com.project.physio_backend.Entities.Users;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.Data;
@@ -12,7 +14,7 @@ import lombok.Data;
 public class Profile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "profile_id", nullable = false)
+    @Column(name = "profile_ID", nullable = false)
     private Long profileId;
 
     private String bio;
@@ -34,8 +36,10 @@ public class Profile {
     @Enumerated(EnumType.STRING)
     private Location location;
 
-    // @JoinColumn(name = "user_id", referencedColumnName = "user_id")
-    // private User user;
+    @JsonIgnore
+    @OneToOne(mappedBy = "profile", cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_ID")
+    private User user;
 
     public Profile() {}
 
