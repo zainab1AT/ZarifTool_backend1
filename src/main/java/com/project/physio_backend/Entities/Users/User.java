@@ -29,20 +29,20 @@ public class User {
     @Size(min = 6, max = 40, message = "Password size must be between 6 and 40 characters")
     private String password;
 
-    @JsonIgnore
-    private Profile profile;
+    // @JsonIgnore
+    // private Profile profile;
 
-    @JsonIgnore
-    private List<Report> reports;
+    // @JsonIgnore
+    // private List<Report> reports;
 
-    @JsonIgnore
-    private List<Progress> progress;
+    // @JsonIgnore
+    // private List<Progress> progress;
 
-    @JsonIgnore
-    private List<Problem> problems;
+    // @JsonIgnore
+    // private List<Problem> problems;
 
-    @JsonIgnore
-    private List<Exercise> exercises;
+    // @JsonIgnore
+    // private List<Exercise> exercises;
 
     public User(String username, String password) {
         this.username = username;

@@ -34,13 +34,12 @@ public class Profile {
     @Enumerated(EnumType.STRING)
     private Location location;
 
-    @OneToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
-    private User user;
+    // @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    // private User user;
 
     public Profile() {}
 
-    public Profile(String bio, String profilePictureUri, double height, double weight, Date dateOfBirth, Gender gender, Location location, User user) {
+    public Profile(String bio, String profilePictureUri, double height, double weight, Date dateOfBirth, Gender gender, Location location) {
         this.bio = bio;
         this.profilePictureUri = profilePictureUri;
         this.height = height;
@@ -48,7 +47,7 @@ public class Profile {
         this.dateOfBirth = dateOfBirth;
         this.gender = gender;
         this.location = location;
-        this.user = user;
+        // this.user = user;
     }
 
 }
