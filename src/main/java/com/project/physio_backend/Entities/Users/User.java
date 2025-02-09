@@ -1,6 +1,5 @@
 package com.project.physio_backend.Entities.Users;
 
-import com.project.physio_backend.Entities.Progress.Progress;
 import com.project.physio_backend.Entities.Reports.Report;
 import com.project.physio_backend.Entities.Excercises.Exercise;
 import com.project.physio_backend.Entities.Problems.Problem;
@@ -18,7 +17,7 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id", nullable = false)
+    @Column(name = "user_ID", nullable = false)
     private Long userID;
 
     @NotBlank
@@ -29,20 +28,17 @@ public class User {
     @Size(min = 6, max = 40, message = "Password size must be between 6 and 40 characters")
     private String password;
 
-    // @JsonIgnore
-    // private Profile profile;
+    @JsonIgnore
+    @OneToOne(cascade = CascadeType.ALL)
+    private Profile profile;
 
-    // @JsonIgnore
-    // private List<Report> reports;
+    @JsonIgnore
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Report> reports;
 
-    // @JsonIgnore
-    // private List<Progress> progress;
-
-    // @JsonIgnore
-    // private List<Problem> problems;
-
-    // @JsonIgnore
-    // private List<Exercise> exercises;
+    @JsonIgnore
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Problem> problems;
 
     public User(String username, String password) {
         this.username = username;

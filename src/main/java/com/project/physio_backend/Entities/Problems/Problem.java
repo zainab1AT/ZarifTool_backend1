@@ -1,14 +1,16 @@
 package com.project.physio_backend.Entities.Problems;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.physio_backend.Entities.Excercises.Exercise;
+import com.project.physio_backend.Entities.Progress.Progress;
 import com.project.physio_backend.Entities.Reports.Report;
+import com.project.physio_backend.Entities.Users.User;
 
 import jakarta.persistence.*;
 import lombok.Data;
-
-import java.util.List;
 
 @Data
 @Entity
@@ -17,7 +19,7 @@ public class Problem {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "Problem_id", nullable = false)
+  @Column(name = "Problem_ID", nullable = false)
   private Long problemID;
 
   @Column(name = "descriptive_image")
@@ -26,25 +28,28 @@ public class Problem {
   @Column(columnDefinition = "TEXT")
   private String description;
 
-  @ManyToMany
-  @JoinTable(name = "problem_exercise", joinColumns = @JoinColumn(name = "problem_id"), inverseJoinColumns = @JoinColumn(name = "exercise_id"))
+  @OneToMany(mappedBy = "problem", cascade = CascadeType.ALL)
   private List<Exercise> exercises = new ArrayList<>();
 
-  @ManyToMany(mappedBy = "problems")
+  @OneToMany(mappedBy = "problem", cascade = CascadeType.ALL)
+  private List<Progress> progresses = new ArrayList<>();
+
+  @JsonIgnore
+  @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+  @JoinTable(name = "report-problem", joinColumns = @JoinColumn(name = "problem_ID"), inverseJoinColumns = @JoinColumn(name = "report_ID"))
   private List<Report> reports = new ArrayList<>();
 
-  public Problem() {
-  }
+  @ManyToOne
+  @JoinColumn(name = "user_ID", nullable = false)
+  private User user;
 
-  public Problem(String descriptiveImage, String description, List<Exercise> exercises) {
-    this.descriptiveImage = descriptiveImage;
-    this.description = description;
-    this.exercises = exercises;
+  public Problem() {
   }
 
   public Problem(String descriptiveImage, String description) {
     this.descriptiveImage = descriptiveImage;
     this.description = description;
+    // this.exercises = exercises;
   }
 
 }
