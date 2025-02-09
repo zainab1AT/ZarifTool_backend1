@@ -1,7 +1,6 @@
 package com.project.physio_backend.Entities.Excercises;
 
 import com.project.physio_backend.Entities.Problems.Problem;
-import com.project.physio_backend.Entities.Users.User;
 
 import jakarta.persistence.*;
 import lombok.Data;
