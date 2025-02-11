@@ -1,13 +1,16 @@
 package com.project.physio_backend.Entities.Physiotherapists;
 
-import java.util.List;
+import java.util.*;
+
+import com.project.physio_backend.Entities.Users.Location;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 @Entity
 @Table(name = "physiotherapist")
 @Data
+@NoArgsConstructor
 public class Physiotherapist {
 
     @Column(name = "physiotherapist_ID", nullable = false)
@@ -15,7 +18,7 @@ public class Physiotherapist {
     @Id
     private long physiotherapistID;
 
-    private String clicncName;
+    private String clinicName;
 
     private long phonenumber;
 
@@ -23,8 +26,20 @@ public class Physiotherapist {
 
     private String address;
 
-    private List<String> workingDays;
+    private String addressLink;
+
+    @Enumerated(EnumType.STRING)
+    private Location location;
 
     @OneToMany(mappedBy = "physiotherapist", cascade = CascadeType.ALL)
     private List<WorkingHours> workingHours;
+
+    public void addWorkDay (WorkingHours workingDays) {
+        if (workingHours == null) {
+            workingHours = new ArrayList<>();
+        }
+        this.workingHours.add(workingDays);
+    }
+
+    
 }
