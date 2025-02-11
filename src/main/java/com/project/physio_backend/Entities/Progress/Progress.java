@@ -32,4 +32,9 @@ public class Progress {
     // this.exercises = exercises;
   }
 
+  public Progress(LocalDateTime timestamp, Double percentage) {
+    this.timestamp = timestamp;
+    this.percentag = percentage;
+  }
+
 }

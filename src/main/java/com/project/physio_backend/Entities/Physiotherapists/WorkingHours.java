@@ -14,10 +14,10 @@ public class WorkingHours {
     private Long workingHoursID;
 
     @Enumerated(EnumType.STRING)
-    private DayOfWeek day;
+    private DayOfWeek dayOfWeek;
 
     private String startTime;
-    
+
     private String endTime;
 
     @ManyToOne
