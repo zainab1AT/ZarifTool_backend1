@@ -19,7 +19,7 @@ public class ExerciseServiceImpl implements ExerciseService {
     private ExerciseRepositry exerciseRepository;
 
     @Autowired
-    private ProblemRepositry problemRepository;
+    private ProblemRepository problemRepository;
 
 
     @Override

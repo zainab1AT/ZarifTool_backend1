@@ -49,7 +49,6 @@ public class Problem {
   public Problem(String descriptiveImage, String description) {
     this.descriptiveImage = descriptiveImage;
     this.description = description;
-    // this.exercises = exercises;
   }
 
   public void addExercise (Exercise exercise) {
