@@ -36,10 +36,6 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Report> reports;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Problem> problems;
-
     public User(String username, String password) {
         this.username = username;
         this.password = password;

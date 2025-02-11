@@ -39,9 +39,10 @@ public class Problem {
   @JoinTable(name = "report-problem", joinColumns = @JoinColumn(name = "problem_ID"), inverseJoinColumns = @JoinColumn(name = "report_ID"))
   private List<Report> reports = new ArrayList<>();
 
-  @ManyToOne
-  @JoinColumn(name = "user_ID", nullable = false)
-  private User user;
+  @JsonIgnore
+  @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+  @JoinTable(name = "user-problem", joinColumns = @JoinColumn(name = "problem_ID"), inverseJoinColumns = @JoinColumn(name = "user_ID"))
+  private List<User> users = new ArrayList<>();
 
   public Problem() {
   }

@@ -4,11 +4,13 @@ import com.project.physio_backend.Entities.Excercises.Exercise;
 import com.project.physio_backend.Entities.Problems.Problem;
 import com.project.physio_backend.Entities.Progress.Progress;
 import com.project.physio_backend.Entities.Reports.Report;
+import com.project.physio_backend.Entities.Users.User;
 import com.project.physio_backend.Exceptions.Problems.ProblemNotFound;
 import com.project.physio_backend.Repositries.ExerciseRepositry;
 import com.project.physio_backend.Repositries.ProblemRepository;
 import com.project.physio_backend.Repositries.ProgressRepository;
 import com.project.physio_backend.Repositries.ReportRepository;
+import com.project.physio_backend.Repositries.UserRepositry;
 
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -20,15 +22,18 @@ public class ProblemServiceImpl implements ProblemService {
   private final ExerciseRepositry exerciseRepositry;
   private final ReportRepository reportRepository;
   private final ProgressRepository progressRepository;
+  private final UserRepositry userRepository;
 
   public ProblemServiceImpl(ProblemRepository problemRepository,
       ExerciseRepositry exerciseRepositry,
       ReportRepository reportRepository,
-      ProgressRepository progressRepository) {
+      ProgressRepository progressRepository,
+      UserRepositry userRepository) {
     this.problemRepository = problemRepository;
     this.exerciseRepositry = exerciseRepositry;
     this.reportRepository = reportRepository;
     this.progressRepository = progressRepository;
+    this.userRepository = userRepository;
   }
 
   @Override
@@ -42,10 +47,6 @@ public class ProblemServiceImpl implements ProblemService {
         .orElseThrow(() -> new ProblemNotFound("Problem not found with id " + id));
   }
 
-  // @Override
-  // public Problem createProblem(Problem problem) {
-  // return problemRepository.save(problem);
-  // }
   @Override
   public Problem createProblem(String image, String description, List<Exercise> exercises) {
     Problem problem = new Problem();
@@ -88,7 +89,7 @@ public class ProblemServiceImpl implements ProblemService {
   @Override
   public Problem removeExerciseFromProblem(Long id, Long exerciseId) {
     Problem problem = getProblemById(id);
-    problem.getExercises().removeIf(exercise -> exercise.getExerciseID() == exerciseId);
+    problem.getExercises().removeIf(exercise -> exercise.getExerciseID().equals(exerciseId));
     return problemRepository.save(problem);
   }
 
@@ -129,10 +130,10 @@ public class ProblemServiceImpl implements ProblemService {
   @Override
   public Problem addExerciseToProblem(Long id, Long exerciseId) {
     Problem problem = getProblemById(id);
-    // Exercise exercise = ExerciseRepositry.findById(exerciseId)
-    // .orElseThrow(() -> new RuntimeException("Exercise not found"));
+    Exercise exercise = exerciseRepositry.findById(exerciseId)
+        .orElseThrow(() -> new RuntimeException("Exercise not found"));
 
-    // problem.getExercises().add(exercise);
+    problem.getExercises().add(exercise);
     return problemRepository.save(problem);
   }
 
@@ -158,5 +159,27 @@ public class ProblemServiceImpl implements ProblemService {
     problem.setDescriptiveImage(newImage);
     problemRepository.save(problem);
     return true;
+  }
+
+  @Override
+  public Problem addUserToProblem(Long problemId, Long userId) {
+    Problem problem = getProblemById(problemId);
+    User user = UserRepositry.findById(userId)
+        .orElseThrow(() -> new RuntimeException("User not found"));
+
+    problem.getUsers().add(user);
+    return problemRepository.save(problem);
+  }
+
+  @Override
+  public Problem removeUserFromProblem(Long problemId, Long userId) {
+    Problem problem = getProblemById(problemId);
+    problem.getUsers().removeIf(user -> user.getUserID().equals(userId));
+    return problemRepository.save(problem);
+  }
+
+  @Override
+  public List<User> getProblemUsers(Long problemId) {
+    return getProblemById(problemId).getUsers();
   }
 }
