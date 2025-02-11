@@ -35,6 +35,7 @@ public class PhysiotherapistServiceImpl implements PhysiotherapistService {
         physiotherapist.setAddress(address);
         physiotherapist.setAddressLink(addressLink);
         physiotherapist.setLocation(location);
+        
         if (workingHours == null) {
             workingHours = new ArrayList<>();
         }
