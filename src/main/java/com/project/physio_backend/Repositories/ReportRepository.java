@@ -1,4 +1,4 @@
-package com.project.physio_backend.Repositries;
+package com.project.physio_backend.Repositories;
 
 import com.project.physio_backend.Entities.Reports.Report;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -52,4 +52,11 @@ public class Problem {
     this.description = description;
   }
 
+  public void addExercise (Exercise exercise) {
+    if (exercises==null){
+      exercises = new ArrayList<>();
+    }
+    this.exercises.add(exercise);
+  }
+
 }

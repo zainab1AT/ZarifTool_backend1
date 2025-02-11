@@ -19,13 +19,13 @@ import java.util.List;
 public class ProblemServiceImpl implements ProblemService {
 
   private final ProblemRepository problemRepository;
-  private final ExerciseRepositry exerciseRepositry;
+  private final ExerciseRepository exerciseRepositry;
   private final ReportRepository reportRepository;
   private final ProgressRepository progressRepository;
   private final UserRepositry userRepository;
 
   public ProblemServiceImpl(ProblemRepository problemRepository,
-      ExerciseRepositry exerciseRepositry,
+      ExerciseRepository exerciseRepositry,
       ReportRepository reportRepository,
       ProgressRepository progressRepository,
       UserRepositry userRepository) {
