@@ -19,7 +19,7 @@ public class Exercise {
 
     private String exerciseDescription;
 
-    private int exerciseLength;
+    private int exerciseDuration;
 
     @ManyToOne
     @JoinColumn(name = "problem_ID", nullable = false)
