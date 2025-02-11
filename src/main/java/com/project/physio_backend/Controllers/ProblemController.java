@@ -3,6 +3,7 @@ package com.project.physio_backend.Controllers;
 import com.project.physio_backend.Entities.Problems.Problem;
 import com.project.physio_backend.Entities.Progress.Progress;
 import com.project.physio_backend.Entities.Reports.Report;
+import com.project.physio_backend.Entities.Users.User;
 import com.project.physio_backend.Services.ProblemService.ProblemService;
 import com.project.physio_backend.Entities.Excercises.Exercise;
 
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/problems")
+@RequestMapping("/api/problems")
 @CrossOrigin(origins = "*")
 public class ProblemController {
 
@@ -48,17 +49,15 @@ public class ProblemController {
     return ResponseEntity.ok(problemService.getProblemProgress(id));
   }
 
-  // @PostMapping
-  // public ResponseEntity<Problem> createProblem(@RequestBody Problem problem) {
-  // return ResponseEntity.ok(problemService.createProblem(problem));
-  // }
   @PostMapping
-  public ResponseEntity<Problem> createProblem(@RequestParam String image,
-      @RequestParam String description,
-      @RequestBody List<Exercise> exercises) {
-    Problem problem = problemService.createProblem(image, description, exercises);
+  public ResponseEntity<Problem> createProblem(@RequestBody Problem problem) {
+    return ResponseEntity.ok(
+        problemService.createProblem(problem));
+  }
 
-    return new ResponseEntity<>(problem, HttpStatus.CREATED);
+  @PostMapping("/user/{userId}")
+  public ResponseEntity<Problem> createProblemForUser(@PathVariable Long user_ID, @RequestBody Problem problem) {
+    return ResponseEntity.ok(problemService.createProblemForUser(user_ID, problem));
   }
 
   @PutMapping("/{id}")
@@ -119,4 +118,20 @@ public class ProblemController {
     boolean updated = problemService.updateDescription(id, newDescription);
     return new ResponseEntity<>(updated, HttpStatus.OK);
   }
+
+  @PostMapping("/{id}/add-user/{userId}")
+  public ResponseEntity<Problem> addUserToProblem(@PathVariable Long id, @PathVariable Long userId) {
+    return ResponseEntity.ok(problemService.addUserToProblem(id, userId));
+  }
+
+  @DeleteMapping("/{id}/remove-user/{userId}")
+  public ResponseEntity<Problem> removeUserFromProblem(@PathVariable Long id, @PathVariable Long userId) {
+    return ResponseEntity.ok(problemService.removeUserFromProblem(id, userId));
+  }
+
+  @GetMapping("/{id}/users")
+  public ResponseEntity<List<User>> getProblemUsers(@PathVariable Long id) {
+    return ResponseEntity.ok(problemService.getProblemUsers(id));
+  }
+
 }

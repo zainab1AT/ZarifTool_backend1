@@ -4,6 +4,7 @@ import com.project.physio_backend.Entities.Excercises.Exercise;
 import com.project.physio_backend.Entities.Problems.Problem;
 import com.project.physio_backend.Entities.Progress.Progress;
 import com.project.physio_backend.Entities.Reports.Report;
+import com.project.physio_backend.Entities.Users.User;
 
 import java.util.List;
 
@@ -12,8 +13,9 @@ public interface ProblemService {
 
   Problem getProblemById(Long id);
 
-  // Problem createProblem(Problem problem);
-  Problem createProblem(String image, String description, List<Exercise> exercises);
+  Problem createProblem(Problem problem);
+
+  Problem createProblemForUser(Long user_ID, Problem problem);
 
   Problem updateProblem(Long id, Problem problem);
 
@@ -42,4 +44,10 @@ public interface ProblemService {
   boolean updateExercises(Long id, List<Exercise> newExercises);
 
   boolean updateDescriptiveImage(Long id, String newImage);
+
+  Problem addUserToProblem(Long problemId, Long userId);
+
+  Problem removeUserFromProblem(Long problemId, Long userId);
+
+  List<User> getProblemUsers(Long problemId);
 }

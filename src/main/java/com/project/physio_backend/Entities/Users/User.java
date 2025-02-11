@@ -1,7 +1,6 @@
 package com.project.physio_backend.Entities.Users;
 
 import com.project.physio_backend.Entities.Reports.Report;
-import com.project.physio_backend.Entities.Problems.Problem;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -34,10 +33,6 @@ public class User {
     @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Report> reports;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Problem> problems;
 
     public User(String username, String password) {
         this.username = username;
