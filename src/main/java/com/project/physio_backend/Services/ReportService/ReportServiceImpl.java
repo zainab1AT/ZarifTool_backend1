@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.project.physio_backend.Entities.Reports.Report;
 import com.project.physio_backend.Exceptions.Reports.ReportNotFound;
-import com.project.physio_backend.Repositries.ReportRepository;
+import com.project.physio_backend.Repositories.ReportRepository;
 
 @Service
 public class ReportServiceImpl implements ReportService {

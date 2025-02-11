@@ -13,14 +13,13 @@ import com.project.physio_backend.Entities.Physiotherapists.WorkingHours;
 import com.project.physio_backend.Entities.Users.Location;
 import com.project.physio_backend.Exceptions.Physiotherapists.PhysiotherapistNotFoundException;
 import com.project.physio_backend.Exceptions.WorkingHours.WorkingHoursNotFoundException;
-import com.project.physio_backend.Repositries.PhysiotherapistRepositry;
-import com.project.physio_backend.Repositries.WorkingHoursRepository;
+import com.project.physio_backend.Repositories.*;
 
 @Service
 public class PhysiotherapistServiceImpl implements PhysiotherapistService {
 
     @Autowired
-    private PhysiotherapistRepositry physiotherapistRepository;
+    private PhysiotherapistRepository physiotherapistRepository;
 
     @Autowired
     private WorkingHoursRepository workingHoursRepository;
