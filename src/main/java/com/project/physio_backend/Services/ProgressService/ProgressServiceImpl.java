@@ -2,7 +2,7 @@ package com.project.physio_backend.Services.ProgressService;
 
 import com.project.physio_backend.Entities.Progress.Progress;
 import com.project.physio_backend.Exceptions.Progress.ProgressNotFound;
-import com.project.physio_backend.Repositries.ProgressRepository;
+import com.project.physio_backend.Repositories.ProgressRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

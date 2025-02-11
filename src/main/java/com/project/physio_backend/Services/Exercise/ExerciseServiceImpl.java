@@ -9,14 +9,14 @@ import org.springframework.stereotype.Service;
 import com.project.physio_backend.Entities.Excercises.Exercise;
 import com.project.physio_backend.Entities.Problems.Problem;
 import com.project.physio_backend.Exceptions.Excercises.ExerciseNotFoundException;
-import com.project.physio_backend.Repositries.*;
+import com.project.physio_backend.Repositories.*;
 // import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
 @Service
 public class ExerciseServiceImpl implements ExerciseService {
 
     @Autowired
-    private ExerciseRepositry exerciseRepository;
+    private ExerciseRepository exerciseRepository;
 
     @Autowired
     private ProblemRepository problemRepository;

@@ -5,10 +5,7 @@ import com.project.physio_backend.Entities.Problems.Problem;
 import com.project.physio_backend.Entities.Progress.Progress;
 import com.project.physio_backend.Entities.Reports.Report;
 import com.project.physio_backend.Exceptions.Problems.ProblemNotFound;
-import com.project.physio_backend.Repositries.ExerciseRepositry;
-import com.project.physio_backend.Repositries.ProblemRepository;
-import com.project.physio_backend.Repositries.ProgressRepository;
-import com.project.physio_backend.Repositries.ReportRepository;
+import com.project.physio_backend.Repositories.*;
 
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -17,12 +14,12 @@ import java.util.List;
 public class ProblemServiceImpl implements ProblemService {
 
   private final ProblemRepository problemRepository;
-  private final ExerciseRepositry exerciseRepositry;
+  private final ExerciseRepository exerciseRepositry;
   private final ReportRepository reportRepository;
   private final ProgressRepository progressRepository;
 
   public ProblemServiceImpl(ProblemRepository problemRepository,
-      ExerciseRepositry exerciseRepositry,
+      ExerciseRepository exerciseRepositry,
       ReportRepository reportRepository,
       ProgressRepository progressRepository) {
     this.problemRepository = problemRepository;
