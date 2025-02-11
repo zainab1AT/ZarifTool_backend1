@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/problems")
+@RequestMapping("/api/problems")
 @CrossOrigin(origins = "*")
 public class ProblemController {
 
@@ -52,7 +52,12 @@ public class ProblemController {
   @PostMapping
   public ResponseEntity<Problem> createProblem(@RequestBody Problem problem) {
     return ResponseEntity.ok(
-        problemService.createProblem(problem.getDescriptiveImage(), problem.getDescription(), problem.getExercises()));
+        problemService.createProblem(problem));
+  }
+
+  @PostMapping("/user/{userId}")
+  public ResponseEntity<Problem> createProblemForUser(@PathVariable Long user_ID, @RequestBody Problem problem) {
+    return ResponseEntity.ok(problemService.createProblemForUser(user_ID, problem));
   }
 
   @PutMapping("/{id}")

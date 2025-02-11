@@ -13,8 +13,9 @@ public interface ProblemService {
 
   Problem getProblemById(Long id);
 
-  // Problem createProblem(Problem problem);
-  Problem createProblem(String image, String description, List<Exercise> exercises);
+  Problem createProblem(Problem problem);
+
+  Problem createProblemForUser(Long user_ID, Problem problem);
 
   Problem updateProblem(Long id, Problem problem);
 

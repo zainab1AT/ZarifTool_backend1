@@ -1,7 +1,6 @@
 package com.project.physio_backend.Entities.Users;
 
 import com.project.physio_backend.Entities.Reports.Report;
-import com.project.physio_backend.Entities.Problems.Problem;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
