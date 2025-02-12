@@ -15,7 +15,7 @@ public class Profile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "profile_ID", nullable = false)
-    private Long profileId;
+    private Long profileID;
 
     private String bio;
 
@@ -40,9 +40,11 @@ public class Profile {
     @JoinColumn(name = "user_ID")
     private User user;
 
-    public Profile() {}
+    public Profile() {
+    }
 
     public Profile(String bio, String profilePictureUri, double height, double weight, Date dateOfBirth, Gender gender, Location location, User user) {
+
         this.bio = bio;
         this.profilePictureUri = profilePictureUri;
         this.height = height;

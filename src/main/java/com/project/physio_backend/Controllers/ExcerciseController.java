@@ -12,13 +12,14 @@ import com.project.physio_backend.Services.Exercise.ExerciseService;
 @RestController
 @RequestMapping("/api/exercises")
 public class ExcerciseController {
-    
+
     @Autowired
     private ExerciseService exerciseService;
 
     @PostMapping("/add/{problemID}")
     public ResponseEntity<Exercise> addExercise(@PathVariable long problemID, @RequestBody Exercise exercise) {
-        return exerciseService.addExercise(problemID, exercise.getExerciseImageURI(), exercise.getExerciseDescription(), exercise.getExerciseDuration());
+        return exerciseService.addExercise(problemID, exercise.getExerciseImageURI(), exercise.getExerciseDescription(),
+                exercise.getExerciseDuration());
     }
 
     @DeleteMapping("/delete/{exerciseID}")
@@ -28,7 +29,8 @@ public class ExcerciseController {
 
     @PutMapping("/update/{exerciseID}")
     public ResponseEntity<Exercise> updateExercise(@PathVariable long exerciseID, @RequestBody Exercise exercise) {
-        return exerciseService.updateExercise(exerciseID, exercise.getExerciseImageURI(), exercise.getExerciseDescription(), exercise.getExerciseDuration());
+        return exerciseService.updateExercise(exerciseID, exercise.getExerciseImageURI(),
+                exercise.getExerciseDescription(), exercise.getExerciseDuration());
     }
 
     @GetMapping("/{exerciseID}")
@@ -40,6 +42,5 @@ public class ExcerciseController {
     public List<Exercise> getAllExercisesForProblem(@PathVariable long problemID) {
         return exerciseService.getAllExercisesforProblem(problemID);
     }
-
 
 }
