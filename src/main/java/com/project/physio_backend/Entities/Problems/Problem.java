@@ -28,9 +28,11 @@ public class Problem {
   @Column(columnDefinition = "TEXT")
   private String description;
 
+  @JsonIgnore
   @OneToMany(mappedBy = "problem", cascade = CascadeType.ALL)
   private List<Exercise> exercises = new ArrayList<>();
 
+  @JsonIgnore
   @OneToMany(mappedBy = "problem", cascade = CascadeType.ALL)
   private List<Progress> progresses = new ArrayList<>();
 
@@ -52,8 +54,8 @@ public class Problem {
     this.description = description;
   }
 
-  public void addExercise (Exercise exercise) {
-    if (exercises==null){
+  public void addExercise(Exercise exercise) {
+    if (exercises == null) {
       exercises = new ArrayList<>();
     }
     this.exercises.add(exercise);

@@ -12,13 +12,13 @@ import com.project.physio_backend.Entities.Users.Location;
 
 public interface PhysiotherapistService {
     
-    public ResponseEntity<Physiotherapist> addPhysiotherapist (String clicncName, long phonenumber, double price, String address, String addressLink, Location location, List<WorkingHours> workingHours);
+    public ResponseEntity<Physiotherapist> addPhysiotherapist (String clicncName, long phonenumber, double price, String address, String addressLink, Location location, String physiotherapitsImage);
 
     public ResponseEntity<?> deletePhysiotherapist (long physiotherapistID);
 
     public ResponseEntity<Physiotherapist> getPhysiotherapist (long physiotherapistID);
 
-    public ResponseEntity<Physiotherapist> updatePhysiotherapist (long physiotherapistID, String clicncName, long phonenumber, double price, String address, String addressLink, Location location);
+    public ResponseEntity<Physiotherapist> updatePhysiotherapist (long physiotherapistID, String clicncName, long phonenumber, double price, String address, String addressLink, Location location, String physiotherapitsImage);
 
     public List<Physiotherapist> getAllPhysiotherapistsforInCity (Location location);
 
