@@ -22,7 +22,7 @@ public class PhysiotherapistController {
     public ResponseEntity<Physiotherapist> addPhysiotherapist(@RequestBody Physiotherapist physiotherapist) {
         return physiotherapistService.addPhysiotherapist(physiotherapist.getClinicName(),
                 physiotherapist.getPhonenumber(), physiotherapist.getPrice(), physiotherapist.getAddress(),
-                physiotherapist.getAddressLink(), physiotherapist.getLocation(), physiotherapist.getWorkingHours());
+                physiotherapist.getAddressLink(), physiotherapist.getLocation(), physiotherapist.getPhysiotherapitsImage());
     }
 
     @DeleteMapping("/delete/{id}")
@@ -40,11 +40,11 @@ public class PhysiotherapistController {
             @RequestBody Physiotherapist physiotherapist) {
         return physiotherapistService.updatePhysiotherapist(id, physiotherapist.getClinicName(),
                 physiotherapist.getPhonenumber(), physiotherapist.getPrice(), physiotherapist.getAddress(),
-                physiotherapist.getAddressLink(), physiotherapist.getLocation());
+                physiotherapist.getAddressLink(), physiotherapist.getLocation(), physiotherapist.getPhysiotherapitsImage());
     }
 
-    @GetMapping("/city")
-    public List<Physiotherapist> getPhysiotherapistsByCity(@RequestBody Location location) {
+    @GetMapping("/city/{location}")
+    public List<Physiotherapist> getPhysiotherapistsByCity(@PathVariable Location location) {
         return physiotherapistService.getAllPhysiotherapistsforInCity(location);
     }
 
@@ -55,7 +55,7 @@ public class PhysiotherapistController {
     }
 
     @GetMapping("/{id}/working-hours")
-    public List<WorkingHours> getWorkingHours(@PathVariable long id) {
+    public List<WorkingHours> getWorkingHoursforTherapits(@PathVariable long id) {
         return physiotherapistService.getWorkingHoursForPhysiotherapist(id);
     }
 
