@@ -28,6 +28,9 @@ public class Problem {
   @Column(columnDefinition = "TEXT")
   private String description;
 
+  @Column(columnDefinition = "TEXT")
+  private String name;
+
   @OneToMany(mappedBy = "problem", cascade = CascadeType.ALL)
   private List<Exercise> exercises = new ArrayList<>();
 
@@ -47,9 +50,10 @@ public class Problem {
   public Problem() {
   }
 
-  public Problem(String descriptiveImage, String description) {
+  public Problem(String name, String descriptiveImage, String description) {
     this.descriptiveImage = descriptiveImage;
     this.description = description;
+    this.name = name;
   }
 
   public void addExercise(Exercise exercise) {

@@ -17,12 +17,6 @@ public interface ProblemService {
 
   void deleteProblem(Long id);
 
-  Problem addReportToProblem(Long problemId, Long reportId);
-
-  boolean updateDescription(Long id, String newDescription);
-
-  boolean updateDescriptiveImage(Long id, String newImage);
-
   User addProblemToUser(Long userId, Long problemId);
 
   User removeProblemFromUser(Long userId, Long problemId);
