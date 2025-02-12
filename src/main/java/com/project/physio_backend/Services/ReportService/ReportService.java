@@ -11,7 +11,4 @@ public interface ReportService {
 
   Report createReport(Report report);
 
-  Report updateReport(Long id, Report report);
-
-  void deleteReport(Long id);
 }

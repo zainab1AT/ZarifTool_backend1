@@ -13,6 +13,8 @@ import com.project.physio_backend.Repositories.ReportRepository;
 import com.project.physio_backend.Repositories.UserRepository;
 
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -52,6 +54,7 @@ public class ProblemServiceImpl implements ProblemService {
     return problemRepository.save(problem);
   }
 
+  ///
   @Override
   public Problem updateProblem(Long id, Problem problem) {
     Problem existingProblem = getProblemById(id);
@@ -67,28 +70,6 @@ public class ProblemServiceImpl implements ProblemService {
   }
 
   @Override
-  public List<Report> getProblemReports(Long id) {
-    return getProblemById(id).getReports();
-  }
-
-  @Override
-  public List<Exercise> getProblemExercises(Long id) {
-    return getProblemById(id).getExercises();
-  }
-
-  @Override
-  public List<Progress> getProblemProgress(Long id) {
-    return getProblemById(id).getProgresses();
-  }
-
-  @Override
-  public Problem removeExerciseFromProblem(Long id, Long exerciseId) {
-    Problem problem = getProblemById(id);
-    problem.getExercises().removeIf(exercise -> exercise.getExerciseID() == (exerciseId));
-    return problemRepository.save(problem);
-  }
-
-  @Override
   public Problem addReportToProblem(Long id, Long reportId) {
     Problem problem = getProblemById(id);
     Report report = reportRepository.findById(reportId)
@@ -99,51 +80,9 @@ public class ProblemServiceImpl implements ProblemService {
   }
 
   @Override
-  public Problem removeReportFromProblem(Long id, Long reportId) {
-    Problem problem = getProblemById(id);
-    problem.getReports().removeIf(report -> report.getReportID().equals(reportId));
-    return problemRepository.save(problem);
-  }
-
-  @Override
-  public Problem addProgressToProblem(Long id, Long progressId) {
-    Problem problem = getProblemById(id);
-    Progress progress = progressRepository.findById(progressId)
-        .orElseThrow(() -> new RuntimeException("Progress not found"));
-
-    problem.getProgresses().add(progress);
-    return problemRepository.save(problem);
-  }
-
-  @Override
-  public Problem removeProgressFromProblem(Long id, Long progressId) {
-    Problem problem = getProblemById(id);
-    problem.getProgresses().removeIf(progress -> progress.getProgressID().equals(progressId));
-    return problemRepository.save(problem);
-  }
-
-  @Override
-  public Problem addExerciseToProblem(Long id, Long exerciseId) {
-    Problem problem = getProblemById(id);
-    Exercise exercise = exerciseRepositry.findById(exerciseId)
-        .orElseThrow(() -> new RuntimeException("Exercise not found"));
-
-    problem.getExercises().add(exercise);
-    return problemRepository.save(problem);
-  }
-
-  @Override
   public boolean updateDescription(Long id, String newDescription) {
     Problem problem = getProblemById(id);
     problem.setDescription(newDescription);
-    problemRepository.save(problem);
-    return true;
-  }
-
-  @Override
-  public boolean updateExercises(Long id, List<Exercise> newExercises) {
-    Problem problem = getProblemById(id);
-    problem.setExercises(newExercises);
     problemRepository.save(problem);
     return true;
   }
@@ -157,34 +96,36 @@ public class ProblemServiceImpl implements ProblemService {
   }
 
   @Override
-  public Problem addUserToProblem(Long problemId, Long userId) {
-    Problem problem = getProblemById(problemId);
+  public User addProblemToUser(Long userId, Long problemId) {
     User user = userRepository.findById(userId)
         .orElseThrow(() -> new RuntimeException("User not found"));
 
-    problem.getUsers().add(user);
-    return problemRepository.save(problem);
+    Problem problem = problemRepository.findById(problemId)
+        .orElseThrow(() -> new RuntimeException("Problem not found"));
+
+    if (user.getProblems().contains(problem)) {
+      throw new RuntimeException("User already has this problem assigned");
+    }
+
+    user.getProblems().add(problem);
+    return userRepository.save(user);
   }
 
   @Override
-  public Problem removeUserFromProblem(Long problemId, Long userId) {
-    Problem problem = getProblemById(problemId);
-    problem.getUsers().removeIf(user -> user.getUserID().equals(userId));
-    return problemRepository.save(problem);
-  }
-
-  @Override
-  public List<User> getProblemUsers(Long problemId) {
-    return getProblemById(problemId).getUsers();
-  }
-
-  @Override
-  public Problem createProblemForUser(Long user_ID, Problem problem) {
-    User user = userRepository.findById(user_ID)
+  public User removeProblemFromUser(Long userId, Long problemId) {
+    User user = userRepository.findById(userId)
         .orElseThrow(() -> new RuntimeException("User not found"));
 
-    problem.getUsers().add(user);
-    return problemRepository.save(problem);
+    user.getProblems().removeIf(problem -> problem.getProblemID().equals(problemId));
+
+    return userRepository.save(user);
+  }
+
+  @Override
+  public List<Problem> getUserProblems(Long userId) {
+    User user = userRepository.findById(userId)
+        .orElseThrow(() -> new RuntimeException("User not found with id " + userId));
+    return user.getProblems();
   }
 
 }

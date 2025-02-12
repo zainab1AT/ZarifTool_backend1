@@ -35,12 +35,12 @@ public class Problem {
   private List<Progress> progresses = new ArrayList<>();
 
   @JsonIgnore
-  @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+  @ManyToMany(fetch = FetchType.LAZY)
   @JoinTable(name = "report-problem", joinColumns = @JoinColumn(name = "problem_ID"), inverseJoinColumns = @JoinColumn(name = "report_ID"))
   private List<Report> reports = new ArrayList<>();
 
   @JsonIgnore
-  @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+  @ManyToMany(fetch = FetchType.LAZY)
   @JoinTable(name = "user-problem", joinColumns = @JoinColumn(name = "problem_ID"), inverseJoinColumns = @JoinColumn(name = "user_ID"))
   private List<User> users = new ArrayList<>();
 
@@ -52,8 +52,8 @@ public class Problem {
     this.description = description;
   }
 
-  public void addExercise (Exercise exercise) {
-    if (exercises==null){
+  public void addExercise(Exercise exercise) {
+    if (exercises == null) {
       exercises = new ArrayList<>();
     }
     this.exercises.add(exercise);

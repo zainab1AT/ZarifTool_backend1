@@ -33,14 +33,4 @@ public class ReportController {
     return reportService.createReport(report);
   }
 
-  @PutMapping("/{id}")
-  public Report updateReport(@PathVariable Long id, @RequestBody Report report) {
-    return reportService.updateReport(id, report);
-  }
-
-  @DeleteMapping("/{id}")
-  @ResponseStatus(HttpStatus.NO_CONTENT)
-  public void deleteReport(@PathVariable Long id) {
-    reportService.deleteReport(id);
-  }
 }

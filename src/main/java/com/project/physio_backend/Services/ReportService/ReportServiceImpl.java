@@ -33,17 +33,4 @@ public class ReportServiceImpl implements ReportService {
     return reportRepository.save(report);
   }
 
-  @Override
-  public Report updateReport(Long id, Report report) {
-    Report existingReport = getReportById(id);
-    existingReport.setUserProblemImage(report.getUserProblemImage());
-    existingReport.setTimestamp(report.getTimestamp());
-    return reportRepository.save(existingReport);
-  }
-
-  @Override
-  public void deleteReport(Long id) {
-    Report report = getReportById(id);
-    reportRepository.delete(report);
-  }
 }
