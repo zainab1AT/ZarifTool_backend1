@@ -1,9 +1,7 @@
 package com.project.physio_backend.Services.ProblemService;
 
-import com.project.physio_backend.Entities.Excercises.Exercise;
 import com.project.physio_backend.Entities.Problems.Problem;
-import com.project.physio_backend.Entities.Progress.Progress;
-import com.project.physio_backend.Entities.Reports.Report;
+
 import com.project.physio_backend.Entities.Users.User;
 
 import java.util.List;
@@ -15,39 +13,14 @@ public interface ProblemService {
 
   Problem createProblem(Problem problem);
 
-  Problem createProblemForUser(Long user_ID, Problem problem);
-
   Problem updateProblem(Long id, Problem problem);
 
   void deleteProblem(Long id);
 
-  List<Report> getProblemReports(Long id);
+  User addProblemToUser(Long userId, Long problemId);
 
-  List<Exercise> getProblemExercises(Long id);
+  User removeProblemFromUser(Long userId, Long problemId);
 
-  List<Progress> getProblemProgress(Long id);
+  List<Problem> getUserProblems(Long problemId);
 
-  Problem addExerciseToProblem(Long problemId, Long exerciseId);
-
-  Problem addReportToProblem(Long problemId, Long reportId);
-
-  Problem addProgressToProblem(Long problemId, Long progressId);
-
-  Problem removeExerciseFromProblem(Long problemId, Long exerciseId);
-
-  Problem removeReportFromProblem(Long problemId, Long reportId);
-
-  Problem removeProgressFromProblem(Long problemId, Long progressId);
-
-  boolean updateDescription(Long id, String newDescription);
-
-  boolean updateExercises(Long id, List<Exercise> newExercises);
-
-  boolean updateDescriptiveImage(Long id, String newImage);
-
-  Problem addUserToProblem(Long problemId, Long userId);
-
-  Problem removeUserFromProblem(Long problemId, Long userId);
-
-  List<User> getProblemUsers(Long problemId);
 }

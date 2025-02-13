@@ -9,9 +9,8 @@ public interface ReportService {
 
   Report getReportById(Long id);
 
-  Report createReport(Report report);
+  Report createReport(Long userId, Report report);
 
-  Report updateReport(Long id, Report report);
+  Report addProblemsToReport(Long reportId, List<String> problemNames);
 
-  void deleteReport(Long id);
 }

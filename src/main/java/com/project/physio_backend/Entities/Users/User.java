@@ -1,5 +1,6 @@
 package com.project.physio_backend.Entities.Users;
 
+import com.project.physio_backend.Entities.Problems.Problem;
 import com.project.physio_backend.Entities.Reports.Report;
 
 import jakarta.persistence.*;
@@ -7,6 +8,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.List;
 
 @Entity
@@ -35,11 +37,17 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Report> reports;
 
-    public User(){
-    }
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "user-problem", joinColumns = @JoinColumn(name = "user_ID"), inverseJoinColumns = @JoinColumn(name = "problem_ID"))
+    private List<Problem> problems;
+
 
     public User(String username, String password) {
         this.username = username;
         this.password = password;
+    }
+
+    public User() {
     }
 }
