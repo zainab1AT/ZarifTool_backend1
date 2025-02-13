@@ -28,12 +28,16 @@ public class Problem {
   @Column(columnDefinition = "TEXT")
   private String description;
 
+
   @Column(columnDefinition = "TEXT")
   private String name;
 
+
+  @JsonIgnore
   @OneToMany(mappedBy = "problem", cascade = CascadeType.ALL)
   private List<Exercise> exercises = new ArrayList<>();
 
+  @JsonIgnore
   @OneToMany(mappedBy = "problem", cascade = CascadeType.ALL)
   private List<Progress> progresses = new ArrayList<>();
 

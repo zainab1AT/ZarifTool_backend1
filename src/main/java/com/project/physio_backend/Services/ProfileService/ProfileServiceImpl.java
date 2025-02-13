@@ -25,11 +25,6 @@ public class ProfileServiceImpl implements ProfileService {
     }
 
     @Override
-    public Profile createProfile(Profile profile) {
-        return profileRepository.save(profile);
-    }
-
-    @Override
     public Profile updateProfile(Long id, Profile profileDetails) {
         return profileRepository.findById(id).map(profile -> {
             profile.setBio(profileDetails.getBio());
@@ -41,13 +36,5 @@ public class ProfileServiceImpl implements ProfileService {
             profile.setLocation(profileDetails.getLocation());
             return profileRepository.save(profile);
         }).orElseThrow(() -> new ProfileNotFoundException(id));
-    }
-
-    @Override
-    public void deleteProfile(Long id) {
-        if (!profileRepository.existsById(id)) {
-            throw new ProfileNotFoundException(id);
-        }
-        profileRepository.deleteById(id);
     }
 }
