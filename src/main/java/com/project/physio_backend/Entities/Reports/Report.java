@@ -3,8 +3,11 @@ package com.project.physio_backend.Entities.Reports;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.project.physio_backend.Entities.Image.Image;
+import com.project.physio_backend.Entities.Problems.Problem;
 import com.project.physio_backend.Entities.Users.User;
 
 @Data
@@ -29,7 +32,11 @@ public class Report {
   @OneToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "image_id", referencedColumnName = "id")
   private Image image;
-  
+
+  @ManyToMany(fetch = FetchType.LAZY)
+  @JoinTable(name = "report-problem", joinColumns = @JoinColumn(name = "report_ID"), inverseJoinColumns = @JoinColumn(name = "problem_ID"))
+  private List<Problem> problems = new ArrayList<>();
+
   public Report() {
   }
 
@@ -41,5 +48,11 @@ public class Report {
   @PrePersist
   protected void onCreate() {
     this.timestamp = LocalDateTime.now();
+  }
+
+  public void addProblem(Problem problem) {
+    if (!this.problems.contains(problem)) {
+      this.problems.add(problem);
+    }
   }
 }

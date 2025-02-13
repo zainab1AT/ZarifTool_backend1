@@ -1,5 +1,6 @@
 package com.project.physio_backend.Entities.Image;
 
+
 import com.project.physio_backend.Entities.Excercises.Exercise;
 import com.project.physio_backend.Entities.Physiotherapists.Physiotherapist;
 import com.project.physio_backend.Entities.Problems.Problem;
@@ -40,5 +41,6 @@ public class Image {
         this.type = type;
         this.name = name;
     }
+
 
 }

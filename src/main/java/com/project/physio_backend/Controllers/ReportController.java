@@ -1,6 +1,7 @@
 package com.project.physio_backend.Controllers;
 
 import com.project.physio_backend.Entities.Reports.Report;
+
 import com.project.physio_backend.Services.ReportService.ReportService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -27,20 +28,15 @@ public class ReportController {
     return reportService.getReportById(id);
   }
 
-  @PostMapping
+  @PostMapping("/{userId}")
   @ResponseStatus(HttpStatus.CREATED)
-  public Report createReport(@RequestBody Report report) {
-    return reportService.createReport(report);
+  public Report createReport(@PathVariable Long userId, @RequestBody Report report) {
+    return reportService.createReport(userId, report);
   }
 
-  @PutMapping("/{id}")
-  public Report updateReport(@PathVariable Long id, @RequestBody Report report) {
-    return reportService.updateReport(id, report);
-  }
-
-  @DeleteMapping("/{id}")
-  @ResponseStatus(HttpStatus.NO_CONTENT)
-  public void deleteReport(@PathVariable Long id) {
-    reportService.deleteReport(id);
+  @PostMapping("/{reportId}/add-problems")
+  @ResponseStatus(HttpStatus.OK)
+  public Report addProblemsToReport(@PathVariable Long reportId, @RequestBody List<String> problemNames) {
+    return reportService.addProblemsToReport(reportId, problemNames);
   }
 }
