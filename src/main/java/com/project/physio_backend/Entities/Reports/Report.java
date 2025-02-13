@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDateTime;
 
+import com.project.physio_backend.Entities.Image.Image;
 import com.project.physio_backend.Entities.Users.User;
 
 @Data
@@ -25,6 +26,10 @@ public class Report {
   @JoinColumn(name = "user_ID", nullable = false)
   private User user;
 
+  @OneToOne(cascade = CascadeType.ALL)
+  @JoinColumn(name = "image_id", referencedColumnName = "id")
+  private Image image;
+  
   public Report() {
   }
 
