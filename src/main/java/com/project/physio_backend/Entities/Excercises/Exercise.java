@@ -1,5 +1,6 @@
 package com.project.physio_backend.Entities.Excercises;
 
+import com.project.physio_backend.Entities.Image.Image;
 import com.project.physio_backend.Entities.Problems.Problem;
 
 import jakarta.persistence.*;
@@ -15,6 +16,10 @@ public class Exercise {
     @Id
     private long exerciseID;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "image_id", referencedColumnName = "id")
+    private Image image;
+    
     private String exerciseImageURI;
 
     private String exerciseDescription;
@@ -24,5 +29,7 @@ public class Exercise {
     @ManyToOne
     @JoinColumn(name = "problem_ID", nullable = false)
     private Problem problem;
+
+
 
 }

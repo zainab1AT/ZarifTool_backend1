@@ -37,11 +37,13 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Report> reports;
 
+    public User(){
+    }
+
     @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user-problem", joinColumns = @JoinColumn(name = "user_ID"), inverseJoinColumns = @JoinColumn(name = "problem_ID"))
     private List<Problem> problems;
-
 
     public User(String username, String password) {
         this.username = username;

@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.physio_backend.Entities.Excercises.Exercise;
+import com.project.physio_backend.Entities.Image.Image;
 import com.project.physio_backend.Entities.Progress.Progress;
 import com.project.physio_backend.Entities.Reports.Report;
 import com.project.physio_backend.Entities.Users.User;
@@ -50,6 +51,10 @@ public class Problem {
   @ManyToMany(fetch = FetchType.LAZY)
   @JoinTable(name = "user-problem", joinColumns = @JoinColumn(name = "problem_ID"), inverseJoinColumns = @JoinColumn(name = "user_ID"))
   private List<User> users = new ArrayList<>();
+
+  @OneToOne(cascade = CascadeType.ALL)
+  @JoinColumn(name = "image_id", referencedColumnName = "id")
+  private Image image;
 
   public Problem() {
   }

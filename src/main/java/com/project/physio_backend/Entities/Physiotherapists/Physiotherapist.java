@@ -3,6 +3,7 @@ package com.project.physio_backend.Entities.Physiotherapists;
 import java.util.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.project.physio_backend.Entities.Image.Image;
 import com.project.physio_backend.Entities.Users.Location;
 
 import jakarta.persistence.*;
@@ -38,6 +39,10 @@ public class Physiotherapist {
     @OneToMany(mappedBy = "physiotherapist", cascade = CascadeType.ALL)
     private List<WorkingHours> workingHours;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "image_id", referencedColumnName = "id")
+    private Image image;
+
     public void addWorkDay(WorkingHours workingDays) {
         if (workingHours == null) {
             workingHours = new ArrayList<>();
@@ -56,7 +61,5 @@ public class Physiotherapist {
         this.physiotherapitsImage = physiotherapitsImage;
         workingHours = new ArrayList<>();
     }
-
-    
 
 }
