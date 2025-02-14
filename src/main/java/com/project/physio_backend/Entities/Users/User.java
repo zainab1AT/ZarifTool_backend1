@@ -25,7 +25,6 @@ public class User {
     private String username;
 
     @NotBlank
-    @Size(min = 6, max = 40, message = "Password size must be between 6 and 40 characters")
     private String password;
 
     @JsonIgnore

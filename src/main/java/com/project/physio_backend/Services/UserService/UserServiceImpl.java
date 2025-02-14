@@ -1,7 +1,9 @@
 package com.project.physio_backend.Services.UserService;
 
+import com.project.physio_backend.Entities.Users.Profile;
 import com.project.physio_backend.Entities.Users.User;
 import com.project.physio_backend.Exceptions.Users.UserNotFoundException;
+import com.project.physio_backend.Repositories.ProfileRepository;
 import com.project.physio_backend.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,8 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private ProfileRepository profileRepository;
 
     @Override
     public List<User> getAllUsers() {
@@ -32,7 +36,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User createUser(User user) {
-        return userRepository.save(user);
+
+        User user2 = userRepository.save(user);
+        Profile profile = new Profile();
+        user.setProfile(profile);
+        profileRepository.save(profile);
+
+        return user2;
     }
 
     @Override

@@ -21,11 +21,10 @@ public class Profile {
 
     private String profilePictureUri;
 
-    private double height;
+    private Double height;
 
-    private double weight;
+    private Double weight;
 
-    @NotNull(message = "Date of birth must not be null")
     @Past(message = "Date of birth must be in the past")
     @Temporal(TemporalType.DATE)
     private Date dateOfBirth;
@@ -41,9 +40,11 @@ public class Profile {
     @JoinColumn(name = "user_ID")
     private User user;
 
-    public Profile() {}
+    public Profile() {
+    }
 
-    public Profile(String bio, String profilePictureUri, double height, double weight, Date dateOfBirth, Gender gender, Location location) {
+    public Profile(String bio, String profilePictureUri, double height, double weight, Date dateOfBirth, Gender gender,
+            Location location) {
         this.bio = bio;
         this.profilePictureUri = profilePictureUri;
         this.height = height;
