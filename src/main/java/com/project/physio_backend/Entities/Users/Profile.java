@@ -21,9 +21,9 @@ public class Profile {
 
     private String profilePictureUri;
 
-    private double height;
+    private Double height;
 
-    private double weight;
+    private Double weight;
 
     @Past(message = "Date of birth must be in the past")
     @Temporal(TemporalType.DATE)
@@ -43,7 +43,9 @@ public class Profile {
     public Profile() {
     }
 
+
     public Profile(String bio, String profilePictureUri, double height, double weight, Date dateOfBirth, Gender gender, Location location, User user) {
+
 
         this.bio = bio;
         this.profilePictureUri = profilePictureUri;
