@@ -8,10 +8,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-import com.project.physio_backend.security.jwt.JwtUtils;
-import com.project.physio_backend.security.services.UserDetailsImpl;
-import com.project.physio_backend.Entities.Users.Location;
-import com.project.physio_backend.Entities.Users.Profile;
+import com.project.physio_backend.Security.jwt.JwtUtils;
+import com.project.physio_backend.Security.services.UserDetailsImpl;
 import com.project.physio_backend.Entities.Users.User;
 import com.project.physio_backend.Repositories.UserRepository;
 import com.project.physio_backend.Services.UserService.UserService;
@@ -69,24 +67,4 @@ public class AuthController {
 
     return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
   }
-  // @PostMapping("/signup")
-  // public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest
-  // signUpRequest) {
-  // if (userRepository.existsByUsername(signUpRequest.getUsername())) {
-  // return ResponseEntity.badRequest().body(new MessageResponse("Error: Username
-  // is already taken!"));
-  // }
-
-  // User user = new User(signUpRequest.getUsername(),
-  // passwordEncoder.encode(signUpRequest.getPassword()));
-
-  // Profile profile = new Profile();
-  // profile.setUser(user);
-  // user.setProfile(profile);
-
-  // userRepository.save(user);
-
-  // return ResponseEntity.ok(new MessageResponse("User registered
-  // successfully!"));
-  // }
 }
