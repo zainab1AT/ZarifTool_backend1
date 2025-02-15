@@ -4,14 +4,21 @@ import com.project.physio_backend.Entities.Problems.Problem;
 
 import com.project.physio_backend.Entities.Users.User;
 
+import io.jsonwebtoken.io.IOException;
+
 import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
 
 public interface ProblemService {
   List<Problem> getAllProblems();
 
   Problem getProblemById(Long id);
 
-  Problem createProblem(Problem problem);
+  Problem createProblemWithImage(Problem problem, MultipartFile multipartFile)throws IOException;
+
+  Problem createProblem(Problem problem)throws IOException;
+
 
   Problem updateProblem(Long id, Problem problem);
 

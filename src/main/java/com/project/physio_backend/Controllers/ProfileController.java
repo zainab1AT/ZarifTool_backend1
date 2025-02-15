@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
-@RestController
+@RestController                 
 @RequestMapping("/api/profiles")
 public class ProfileController {
 
@@ -27,20 +27,10 @@ public class ProfileController {
         return profile.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PostMapping
-    public Profile createProfile(@RequestBody Profile profile) {
-        return profileService.createProfile(profile);
-    }
-
     @PutMapping("/{id}")
     public ResponseEntity<Profile> updateProfile(@PathVariable Long id, @RequestBody Profile profileDetails) {
         Profile updatedProfile = profileService.updateProfile(id, profileDetails);
         return ResponseEntity.ok(updatedProfile);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteProfile(@PathVariable Long id) {
-        profileService.deleteProfile(id);
-        return ResponseEntity.noContent().build();
-    }
 }

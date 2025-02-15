@@ -36,12 +36,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User createUser(User user) {
-
+        
         User user2 = userRepository.save(user);
-        Profile profile = new Profile();
+        Profile profile =new Profile();
         user.setProfile(profile);
         profileRepository.save(profile);
-
+        
         return user2;
     }
 

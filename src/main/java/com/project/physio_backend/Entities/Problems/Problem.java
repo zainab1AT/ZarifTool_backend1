@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.physio_backend.Entities.Excercises.Exercise;
+import com.project.physio_backend.Entities.Image.Image;
 import com.project.physio_backend.Entities.Progress.Progress;
 import com.project.physio_backend.Entities.Reports.Report;
 import com.project.physio_backend.Entities.Users.User;
@@ -28,12 +29,16 @@ public class Problem {
   @Column(columnDefinition = "TEXT")
   private String description;
 
+
   @Column(columnDefinition = "TEXT")
   private String name;
 
+
+  @JsonIgnore
   @OneToMany(mappedBy = "problem", cascade = CascadeType.ALL)
   private List<Exercise> exercises = new ArrayList<>();
 
+  @JsonIgnore
   @OneToMany(mappedBy = "problem", cascade = CascadeType.ALL)
   private List<Progress> progresses = new ArrayList<>();
 
@@ -47,11 +52,14 @@ public class Problem {
   @JoinTable(name = "user-problem", joinColumns = @JoinColumn(name = "problem_ID"), inverseJoinColumns = @JoinColumn(name = "user_ID"))
   private List<User> users = new ArrayList<>();
 
+  @OneToOne(cascade = CascadeType.ALL)
+  @JoinColumn(name = "image_id", referencedColumnName = "id")
+  private Image image;
+
   public Problem() {
   }
 
-  public Problem(String name, String descriptiveImage, String description) {
-    this.descriptiveImage = descriptiveImage;
+  public Problem(String name, String description) {
     this.description = description;
     this.name = name;
   }
