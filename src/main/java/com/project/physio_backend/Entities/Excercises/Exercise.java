@@ -19,8 +19,6 @@ public class Exercise {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "image_id", referencedColumnName = "id")
     private Image image;
-    
-    private String exerciseImageURI;
 
     private String exerciseDescription;
 

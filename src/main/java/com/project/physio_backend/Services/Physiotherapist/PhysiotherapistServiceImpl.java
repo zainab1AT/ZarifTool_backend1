@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.project.physio_backend.Entities.Physiotherapists.DayOfWeek;
 import com.project.physio_backend.Entities.Physiotherapists.Physiotherapist;
@@ -15,6 +16,7 @@ import com.project.physio_backend.Entities.Users.Location;
 import com.project.physio_backend.Exceptions.Physiotherapists.PhysiotherapistNotFoundException;
 import com.project.physio_backend.Exceptions.WorkingHours.WorkingHoursNotFoundException;
 import com.project.physio_backend.Repositories.*;
+import com.project.physio_backend.Services.ImageService.ImageService;
 
 @Service
 public class PhysiotherapistServiceImpl implements PhysiotherapistService {
@@ -25,13 +27,27 @@ public class PhysiotherapistServiceImpl implements PhysiotherapistService {
     @Autowired
     private WorkingHoursRepository workingHoursRepository;
 
+    @Autowired
+    private ImageService imageService;
+
     @Override
     public ResponseEntity<Physiotherapist> addPhysiotherapist(String clinicName, long phoneNumber, double price,
-            String address, String addressLink, Location location, String physiotherapitsImage) {
+            String address, String addressLink, Location location) {
         Physiotherapist physiotherapist = new Physiotherapist(clinicName, phoneNumber, price, address, addressLink,
-                location, physiotherapitsImage);
+                location);
 
         Physiotherapist savedPhysiotherapist = physiotherapistRepository.save(physiotherapist);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedPhysiotherapist);
+    }
+
+    @Override
+    public ResponseEntity<Physiotherapist> addPhysiotherapistWithImage(String clinicName, long phoneNumber, double price,
+            String address, String addressLink, Location location,  MultipartFile multipartFile) {
+        Physiotherapist physiotherapist = new Physiotherapist(clinicName, phoneNumber, price, address, addressLink,
+                location);
+
+        Physiotherapist savedPhysiotherapist = physiotherapistRepository.save(physiotherapist);
+        imageService.uploadImageForPhysiotherapist(multipartFile,physiotherapist.getPhysiotherapistID());
         return ResponseEntity.status(HttpStatus.CREATED).body(savedPhysiotherapist);
     }
 
@@ -50,7 +66,7 @@ public class PhysiotherapistServiceImpl implements PhysiotherapistService {
 
     @Override
     public ResponseEntity<Physiotherapist> updatePhysiotherapist(long physiotherapistID, String clinicName,
-            long phoneNumber, double price, String address, String addressLink, Location location, String physiotherapitsImage) {
+            long phoneNumber, double price, String address, String addressLink, Location location) {
         Physiotherapist physiotherapist = physiotherapistRepository.findById(physiotherapistID)
                 .orElseThrow(() -> new PhysiotherapistNotFoundException(physiotherapistID));
 
@@ -60,8 +76,6 @@ public class PhysiotherapistServiceImpl implements PhysiotherapistService {
         physiotherapist.setAddress(address);
         physiotherapist.setAddressLink(addressLink);
         physiotherapist.setLocation(location);
-        physiotherapist.setPhysiotherapitsImage(physiotherapitsImage);
-
         Physiotherapist updatedPhysiotherapist = physiotherapistRepository.save(physiotherapist);
         return ResponseEntity.ok(updatedPhysiotherapist);
     }

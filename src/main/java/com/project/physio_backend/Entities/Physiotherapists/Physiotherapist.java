@@ -33,8 +33,6 @@ public class Physiotherapist {
     @Enumerated(EnumType.STRING)
     private Location location;
 
-    private String physiotherapitsImage;
-
     @JsonIgnore
     @OneToMany(mappedBy = "physiotherapist", cascade = CascadeType.ALL)
     private List<WorkingHours> workingHours;
@@ -51,14 +49,13 @@ public class Physiotherapist {
     }
 
     public Physiotherapist(String clinicName, long phonenumber, double price, String address, String addressLink,
-            Location location, String physiotherapitsImage) {
+            Location location) {
         this.clinicName = clinicName;
         this.phonenumber = phonenumber;
         this.price = price;
         this.address = address;
         this.addressLink = addressLink;
         this.location = location;
-        this.physiotherapitsImage = physiotherapitsImage;
         workingHours = new ArrayList<>();
     }
 

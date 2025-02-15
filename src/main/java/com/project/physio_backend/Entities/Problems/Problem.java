@@ -59,8 +59,7 @@ public class Problem {
   public Problem() {
   }
 
-  public Problem(String name, String descriptiveImage, String description) {
-    this.descriptiveImage = descriptiveImage;
+  public Problem(String name, String description) {
     this.description = description;
     this.name = name;
   }
