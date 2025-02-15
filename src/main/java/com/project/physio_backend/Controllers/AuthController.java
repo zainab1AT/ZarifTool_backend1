@@ -1,6 +1,10 @@
 package com.project.physio_backend.Controllers;
 
+import java.util.Map;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -8,8 +12,14 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-import com.project.physio_backend.Security.jwt.JwtUtils;
-import com.project.physio_backend.Security.services.UserDetailsImpl;
+
+import org.springframework.web.client.RestTemplate;
+
+import com.project.physio_backend.security.jwt.JwtUtils;
+import com.project.physio_backend.security.services.UserDetailsImpl;
+import com.project.physio_backend.Entities.Users.Location;
+import com.project.physio_backend.Entities.Users.Profile;
+
 import com.project.physio_backend.Entities.Users.User;
 import com.project.physio_backend.Repositories.UserRepository;
 import com.project.physio_backend.Services.UserService.UserService;
@@ -67,4 +77,50 @@ public class AuthController {
 
     return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
   }
+
+  @PostMapping("/google")
+  public ResponseEntity<?> getLoginInfo(@RequestHeader("Authorization") String authorization,
+      @RequestBody Map<String, String> userRequest) {
+    try {
+      String token = authorization.replace("Bearer ", "");
+      String url = "https://www.googleapis.com/oauth2/v3/tokeninfo?access_token=" + token;
+
+      RestTemplate restTemplate = new RestTemplate();
+      Map<String, Object> userInfo = restTemplate.getForObject(url, Map.class);
+
+      if (userInfo == null || userInfo.containsKey("error")) {
+        return ResponseEntity.badRequest().body("Invalid Google token");
+      }
+      // String email = userRequest.get("email");
+      String username = userRequest.get("username");
+
+      Optional<User> optionalUser = userRepository.findByUsername(username);
+      System.out.println(username);
+
+      // String jwtToken = jwtUtils.generateTokenFromEmail(email);
+      if (optionalUser.isPresent()) {
+        User user = optionalUser.get();
+        userInfo.put("id", user.getUserID());
+        userInfo.put("username", user.getUsername());
+        String jwtToken = jwtUtils.generateTokenFromUsername(user.getUsername());
+        userInfo.put("accessToken", jwtToken);
+      } else {
+        User newUser = new User();
+        newUser.setUsername(username);
+
+        User user2 = userService.createUser(newUser);
+
+        userInfo.put("id", user2.getUserID());
+        userInfo.put("username", user2.getUsername());
+        String jwtToken = jwtUtils.generateTokenFromUsername(user2.getUsername());
+        userInfo.put("accessToken", jwtToken);
+      }
+
+      return ResponseEntity.ok(userInfo);
+    } catch (Exception e) {
+      e.printStackTrace();
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred: " + e.getMessage());
+    }
+  }
+
 }
