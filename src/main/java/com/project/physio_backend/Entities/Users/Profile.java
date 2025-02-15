@@ -15,7 +15,7 @@ public class Profile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "profile_ID", nullable = false)
-    private Long profileId;
+    private Long profileID;
 
     private String bio;
 
@@ -43,8 +43,10 @@ public class Profile {
     public Profile() {
     }
 
-    public Profile(String bio, String profilePictureUri, double height, double weight, Date dateOfBirth, Gender gender,
-            Location location) {
+
+    public Profile(String bio, String profilePictureUri, double height, double weight, Date dateOfBirth, Gender gender, Location location, User user) {
+
+
         this.bio = bio;
         this.profilePictureUri = profilePictureUri;
         this.height = height;
@@ -52,7 +54,7 @@ public class Profile {
         this.dateOfBirth = dateOfBirth;
         this.gender = gender;
         this.location = location;
-        // this.user = user;
+        this.user = user;
     }
 
 }

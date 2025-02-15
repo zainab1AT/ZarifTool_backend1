@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.project.physio_backend.Entities.Image.Image;
 import com.project.physio_backend.Entities.Problems.Problem;
 import com.project.physio_backend.Entities.Users.User;
 
@@ -27,6 +28,10 @@ public class Report {
   @ManyToOne
   @JoinColumn(name = "user_ID", nullable = false)
   private User user;
+
+  @OneToOne(cascade = CascadeType.ALL)
+  @JoinColumn(name = "image_id", referencedColumnName = "id")
+  private Image image;
 
   @ManyToMany(fetch = FetchType.LAZY)
   @JoinTable(name = "report-problem", joinColumns = @JoinColumn(name = "report_ID"), inverseJoinColumns = @JoinColumn(name = "problem_ID"))

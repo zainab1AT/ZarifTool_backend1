@@ -12,12 +12,14 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+
 import org.springframework.web.client.RestTemplate;
 
 import com.project.physio_backend.security.jwt.JwtUtils;
 import com.project.physio_backend.security.services.UserDetailsImpl;
 import com.project.physio_backend.Entities.Users.Location;
 import com.project.physio_backend.Entities.Users.Profile;
+
 import com.project.physio_backend.Entities.Users.User;
 import com.project.physio_backend.Repositories.UserRepository;
 import com.project.physio_backend.Services.UserService.UserService;

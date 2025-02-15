@@ -3,8 +3,10 @@ package com.project.physio_backend.Controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.project.physio_backend.Entities.Physiotherapists.Physiotherapist;
 import com.project.physio_backend.Entities.Physiotherapists.WorkingHours;
@@ -22,7 +24,14 @@ public class PhysiotherapistController {
     public ResponseEntity<Physiotherapist> addPhysiotherapist(@RequestBody Physiotherapist physiotherapist) {
         return physiotherapistService.addPhysiotherapist(physiotherapist.getClinicName(),
                 physiotherapist.getPhonenumber(), physiotherapist.getPrice(), physiotherapist.getAddress(),
-                physiotherapist.getAddressLink(), physiotherapist.getLocation(), physiotherapist.getWorkingHours());
+                physiotherapist.getAddressLink(), physiotherapist.getLocation());
+    }
+
+    @PostMapping(value = "/add/image", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<Physiotherapist> addPhysiotherapistWithImage(@RequestPart("physiotherapist") Physiotherapist physiotherapist,@RequestPart("image") MultipartFile file) {
+        return physiotherapistService.addPhysiotherapistWithImage(physiotherapist.getClinicName(),
+                physiotherapist.getPhonenumber(), physiotherapist.getPrice(), physiotherapist.getAddress(),
+                physiotherapist.getAddressLink(), physiotherapist.getLocation(),file);
     }
 
     @DeleteMapping("/delete/{id}")
@@ -43,8 +52,8 @@ public class PhysiotherapistController {
                 physiotherapist.getAddressLink(), physiotherapist.getLocation());
     }
 
-    @GetMapping("/city")
-    public List<Physiotherapist> getPhysiotherapistsByCity(@RequestBody Location location) {
+    @GetMapping("/city/{location}")
+    public List<Physiotherapist> getPhysiotherapistsByCity(@PathVariable Location location) {
         return physiotherapistService.getAllPhysiotherapistsforInCity(location);
     }
 
@@ -55,7 +64,7 @@ public class PhysiotherapistController {
     }
 
     @GetMapping("/{id}/working-hours")
-    public List<WorkingHours> getWorkingHours(@PathVariable long id) {
+    public List<WorkingHours> getWorkingHoursforTherapits(@PathVariable long id) {
         return physiotherapistService.getWorkingHoursForPhysiotherapist(id);
     }
 

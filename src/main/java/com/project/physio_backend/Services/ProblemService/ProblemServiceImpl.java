@@ -5,23 +5,23 @@ import com.project.physio_backend.Entities.Users.User;
 import com.project.physio_backend.Exceptions.Problems.ProblemNotFound;
 import com.project.physio_backend.Repositories.ProblemRepository;
 import com.project.physio_backend.Repositories.UserRepository;
+import com.project.physio_backend.Services.ImageService.ImageService;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
 @Service
 public class ProblemServiceImpl implements ProblemService {
 
-  private final ProblemRepository problemRepository;
-  private final UserRepository userRepository;
-
-  public ProblemServiceImpl(ProblemRepository problemRepository,
-
-      UserRepository userRepository) {
-    this.problemRepository = problemRepository;
-    this.userRepository = userRepository;
-  }
+  @Autowired
+  private ProblemRepository problemRepository;
+  @Autowired
+  private UserRepository userRepository;
+  @Autowired
+  private ImageService imageService;
 
   @Override
   public List<Problem> getAllProblems() {
@@ -32,6 +32,14 @@ public class ProblemServiceImpl implements ProblemService {
   public Problem getProblemById(Long id) {
     return problemRepository.findById(id)
         .orElseThrow(() -> new ProblemNotFound("Problem not found with id " + id));
+  }
+
+  @Override
+  public Problem createProblemWithImage(Problem problem,MultipartFile multipartFile) {
+
+    Problem problem1= problemRepository.save(problem);
+    imageService.uploadImageForProblem(multipartFile,problem1.getProblemID());
+    return problem1;
   }
 
   @Override

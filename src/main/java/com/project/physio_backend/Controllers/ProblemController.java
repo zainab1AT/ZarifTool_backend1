@@ -6,8 +6,10 @@ import com.project.physio_backend.Repositories.ProblemRepository;
 import com.project.physio_backend.Repositories.UserRepository;
 import com.project.physio_backend.Services.ProblemService.ProblemService;
 
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -34,11 +36,21 @@ public class ProblemController {
     return ResponseEntity.ok(problemService.getProblemById(id));
   }
 
-  @PostMapping
-  public ResponseEntity<Problem> createProblem(@RequestBody Problem problem) {
-    return ResponseEntity.ok(
-        problemService.createProblem(problem));
-  }
+  @PostMapping(value = "/image", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+  public ResponseEntity<Problem> createProblemWithImage(
+            @RequestPart("problem") Problem problem,
+            @RequestPart("image") MultipartFile file) {
+        
+        Problem createdProblem = problemService.createProblemWithImage(problem, file);
+        return ResponseEntity.ok(createdProblem);
+    }
+
+    @PostMapping
+    public ResponseEntity<Problem> createProblem(
+            @RequestBody Problem problem){
+        Problem createdProblem = problemService.createProblem(problem);
+        return ResponseEntity.ok(createdProblem);
+    }
 
   @PutMapping("/{id}")
   public ResponseEntity<Problem> updateProblem(@PathVariable Long id, @RequestBody Problem problem) {

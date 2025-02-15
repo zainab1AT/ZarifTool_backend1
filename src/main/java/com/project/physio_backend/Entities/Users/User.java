@@ -20,11 +20,13 @@ public class User {
     @Column(name = "user_ID", nullable = false)
     private Long userID;
 
-    @NotBlank
-    @Size(min = 5, max = 20, message = "The size of username must be between 5 and 20")
+    @NotBlank(message = "Username must not be blank")
+    @Column(nullable = false, unique = true)
     private String username;
 
-    @NotBlank
+
+    @NotBlank(message = "Password must not be blank")
+    @Column(nullable = false)
     private String password;
 
     @JsonIgnore
