@@ -15,13 +15,10 @@ import org.springframework.web.bind.annotation.*;
 
 import org.springframework.web.client.RestTemplate;
 
-import com.project.physio_backend.security.jwt.JwtUtils;
-import com.project.physio_backend.security.services.UserDetailsImpl;
-import com.project.physio_backend.Entities.Users.Location;
-import com.project.physio_backend.Entities.Users.Profile;
-
 import com.project.physio_backend.Entities.Users.User;
 import com.project.physio_backend.Repositories.UserRepository;
+import com.project.physio_backend.Security.jwt.JwtUtils;
+import com.project.physio_backend.Security.services.UserDetailsImpl;
 import com.project.physio_backend.Services.UserService.UserService;
 import com.project.physio_backend.payload.request.LoginRequest;
 import com.project.physio_backend.payload.request.SignupRequest;
@@ -73,7 +70,6 @@ public class AuthController {
         passwordEncoder.encode(signUpRequest.getPassword()));
 
     User user2 = userService.createUser(user);
-    // userRepository.save(user);
 
     return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
   }
@@ -91,30 +87,31 @@ public class AuthController {
       if (userInfo == null || userInfo.containsKey("error")) {
         return ResponseEntity.badRequest().body("Invalid Google token");
       }
-      // String email = userRequest.get("email");
       String username = userRequest.get("username");
 
       Optional<User> optionalUser = userRepository.findByUsername(username);
       System.out.println(username);
 
-      // String jwtToken = jwtUtils.generateTokenFromEmail(email);
       if (optionalUser.isPresent()) {
         User user = optionalUser.get();
         userInfo.put("id", user.getUserID());
         userInfo.put("username", user.getUsername());
         String jwtToken = jwtUtils.generateTokenFromUsername(user.getUsername());
         userInfo.put("accessToken", jwtToken);
-      } else {
+    } else {
         User newUser = new User();
         newUser.setUsername(username);
-
-        User user2 = userService.createUser(newUser);
-
-        userInfo.put("id", user2.getUserID());
-        userInfo.put("username", user2.getUsername());
-        String jwtToken = jwtUtils.generateTokenFromUsername(user2.getUsername());
+        
+        // Set a default or random password (won't be used for login)
+        newUser.setPassword(passwordEncoder.encode("defaultPassword123"));
+    
+        User savedUser = userService.createUser(newUser);
+        
+        userInfo.put("id", savedUser.getUserID());
+        userInfo.put("username", savedUser.getUsername());
+        String jwtToken = jwtUtils.generateTokenFromUsername(savedUser.getUsername());
         userInfo.put("accessToken", jwtToken);
-      }
+    }
 
       return ResponseEntity.ok(userInfo);
     } catch (Exception e) {

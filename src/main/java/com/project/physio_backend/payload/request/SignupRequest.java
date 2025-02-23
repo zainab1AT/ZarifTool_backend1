@@ -1,7 +1,9 @@
 package com.project.physio_backend.payload.request;
 
 import jakarta.validation.constraints.*;
+import lombok.Data;
 
+@Data
 public class SignupRequest {
   @NotBlank
   private String username;
@@ -9,19 +11,9 @@ public class SignupRequest {
   @NotBlank
   private String password;
 
-  public String getUsername() {
-    return username;
-  }
+	public SignupRequest(String username,String password){
+		this.username = username;
+		this.password = password;
+	}
 
-  public void setUsername(String username) {
-    this.username = username;
-  }
-
-  public String getPassword() {
-    return password;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
-  }
 }

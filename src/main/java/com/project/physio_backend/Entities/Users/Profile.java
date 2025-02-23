@@ -46,7 +46,6 @@ public class Profile {
 
     public Profile(String bio, String profilePictureUri, double height, double weight, Date dateOfBirth, Gender gender, Location location, User user) {
 
-
         this.bio = bio;
         this.profilePictureUri = profilePictureUri;
         this.height = height;

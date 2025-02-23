@@ -5,7 +5,6 @@ import com.project.physio_backend.Entities.Reports.Report;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 import lombok.Data;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
