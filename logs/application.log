@@ -1133,3 +1133,206 @@ Caused by: java.lang.Error: Unresolved compilation problem:
 2025-02-23T15:11:27.782+03:00  INFO 39356 --- [physio_backend] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
 2025-02-23T15:11:27.785+03:00  INFO 39356 --- [physio_backend] [restartedMain] c.p.p.PhysioBackendApplication           : Started PhysioBackendApplication in 2.025 seconds (process running for 780.722)
 2025-02-23T15:11:27.788+03:00  INFO 39356 --- [physio_backend] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2025-02-23T16:13:27.159+03:00  INFO 39356 --- [physio_backend] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat-1].[localhost].[/]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-02-23T16:13:27.165+03:00  INFO 39356 --- [physio_backend] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-02-23T16:13:27.179+03:00  INFO 39356 --- [physio_backend] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 11 ms
+2025-02-23T16:13:27.188+03:00 DEBUG 39356 --- [physio_backend] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing POST /api/auth/signin
+2025-02-23T16:13:27.190+03:00 DEBUG 39356 --- [physio_backend] [http-nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-02-23T16:13:27.193+03:00 DEBUG 39356 --- [physio_backend] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured POST /api/auth/signin
+2025-02-23T16:13:28.179+03:00 DEBUG 39356 --- [physio_backend] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing POST /api/auth/signin
+2025-02-23T16:13:28.182+03:00 DEBUG 39356 --- [physio_backend] [http-nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-02-23T16:13:28.185+03:00 DEBUG 39356 --- [physio_backend] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured POST /api/auth/signin
+2025-02-23T16:13:28.930+03:00 DEBUG 39356 --- [physio_backend] [http-nio-8080-exec-1] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
+2025-02-23T16:13:29.679+03:00 DEBUG 39356 --- [physio_backend] [http-nio-8080-exec-2] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
+2025-02-23T16:13:42.254+03:00  INFO 182472 --- [physio_backend] [main] c.p.p.ProfileControllerTest              : Starting ProfileControllerTest using Java 21.0.1 with PID 182472 (started by Zainab AT in D:\A ciminarProject\PhysioBackend\PhysiO_backend)
+2025-02-23T16:13:42.264+03:00  INFO 182472 --- [physio_backend] [main] c.p.p.ProfileControllerTest              : No active profile set, falling back to 1 default profile: "default"
+2025-02-23T16:13:44.265+03:00  INFO 156500 --- [physio_backend] [main] c.p.p.ProfileControllerTest              : Starting ProfileControllerTest using Java 21.0.1 with PID 156500 (started by Zainab AT in D:\A ciminarProject\PhysioBackend\PhysiO_backend)
+2025-02-23T16:13:44.274+03:00  INFO 156500 --- [physio_backend] [main] c.p.p.ProfileControllerTest              : No active profile set, falling back to 1 default profile: "default"
+2025-02-23T16:13:57.743+03:00  INFO 182472 --- [physio_backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-02-23T16:14:00.086+03:00  INFO 182472 --- [physio_backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 2268 ms. Found 9 JPA repository interfaces.
+2025-02-23T16:14:00.521+03:00  INFO 156500 --- [physio_backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-02-23T16:14:02.924+03:00  INFO 156500 --- [physio_backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1990 ms. Found 9 JPA repository interfaces.
+2025-02-23T16:14:26.879+03:00  INFO 182472 --- [physio_backend] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-02-23T16:14:27.785+03:00  INFO 182472 --- [physio_backend] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.5.Final
+2025-02-23T16:14:28.256+03:00  INFO 156500 --- [physio_backend] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-02-23T16:14:28.387+03:00  INFO 182472 --- [physio_backend] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-02-23T16:14:29.766+03:00  INFO 156500 --- [physio_backend] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.5.Final
+2025-02-23T16:14:30.323+03:00  INFO 156500 --- [physio_backend] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-02-23T16:14:31.299+03:00  INFO 182472 --- [physio_backend] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-02-23T16:14:31.829+03:00  INFO 182472 --- [physio_backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-02-23T16:14:33.313+03:00  INFO 156500 --- [physio_backend] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-02-23T16:14:33.906+03:00  INFO 156500 --- [physio_backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-02-23T16:14:35.277+03:00  INFO 182472 --- [physio_backend] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@36b2b6e6
+2025-02-23T16:14:35.293+03:00  INFO 182472 --- [physio_backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-02-23T16:14:36.369+03:00  WARN 182472 --- [physio_backend] [main] org.hibernate.dialect.Dialect            : HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+2025-02-23T16:14:36.535+03:00  WARN 182472 --- [physio_backend] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-02-23T16:14:36.814+03:00  INFO 182472 --- [physio_backend] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 5.5.5
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-02-23T16:14:38.020+03:00  INFO 156500 --- [physio_backend] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@f14d079
+2025-02-23T16:14:38.041+03:00  INFO 156500 --- [physio_backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-02-23T16:14:39.145+03:00  WARN 156500 --- [physio_backend] [main] org.hibernate.dialect.Dialect            : HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+2025-02-23T16:14:39.285+03:00  WARN 156500 --- [physio_backend] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-02-23T16:14:39.788+03:00  INFO 156500 --- [physio_backend] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 5.5.5
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-02-23T16:14:52.281+03:00  INFO 182472 --- [physio_backend] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-02-23T16:14:54.485+03:00  INFO 156500 --- [physio_backend] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-02-23T16:14:55.642+03:00  INFO 182472 --- [physio_backend] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-02-23T16:14:59.516+03:00  INFO 156500 --- [physio_backend] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-02-23T16:15:07.616+03:00  INFO 182472 --- [physio_backend] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-02-23T16:15:07.676+03:00  WARN 182472 --- [physio_backend] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-02-23T16:15:12.153+03:00  INFO 156500 --- [physio_backend] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-02-23T16:15:12.160+03:00  WARN 156500 --- [physio_backend] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-02-23T16:15:13.444+03:00  WARN 182472 --- [physio_backend] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-02-23T16:15:17.919+03:00  WARN 156500 --- [physio_backend] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-02-23T16:15:23.141+03:00 DEBUG 182472 --- [physio_backend] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, AuthTokenFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-02-23T16:15:28.368+03:00 DEBUG 156500 --- [physio_backend] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, AuthTokenFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-02-23T16:15:31.713+03:00  INFO 182472 --- [physio_backend] [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2025-02-23T16:15:31.716+03:00  INFO 182472 --- [physio_backend] [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2025-02-23T16:15:31.724+03:00  INFO 182472 --- [physio_backend] [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 6 ms
+2025-02-23T16:15:32.119+03:00  INFO 182472 --- [physio_backend] [main] c.p.p.ProfileControllerTest              : Started ProfileControllerTest in 114.326 seconds (process running for 150.212)
+2025-02-23T16:15:35.261+03:00  INFO 156500 --- [physio_backend] [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2025-02-23T16:15:35.264+03:00  INFO 156500 --- [physio_backend] [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2025-02-23T16:15:35.274+03:00  INFO 156500 --- [physio_backend] [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 6 ms
+2025-02-23T16:15:35.500+03:00 DEBUG 182472 --- [physio_backend] [main] o.s.security.web.FilterChainProxy        : Securing GET /api/profiles/22
+2025-02-23T16:15:35.803+03:00  INFO 156500 --- [physio_backend] [main] c.p.p.ProfileControllerTest              : Started ProfileControllerTest in 116.91 seconds (process running for 153.844)
+2025-02-23T16:15:38.894+03:00 DEBUG 182472 --- [physio_backend] [main] o.s.security.web.FilterChainProxy        : Secured GET /api/profiles/22
+2025-02-23T16:15:39.115+03:00 DEBUG 156500 --- [physio_backend] [main] o.s.security.web.FilterChainProxy        : Securing GET /api/profiles/22
+2025-02-23T16:15:42.471+03:00  INFO 182472 --- [physio_backend] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-02-23T16:15:42.505+03:00  INFO 182472 --- [physio_backend] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-02-23T16:15:42.799+03:00  INFO 182472 --- [physio_backend] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-02-23T16:15:43.020+03:00 DEBUG 156500 --- [physio_backend] [main] o.s.security.web.FilterChainProxy        : Secured GET /api/profiles/22
+2025-02-23T16:15:46.521+03:00  INFO 156500 --- [physio_backend] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-02-23T16:15:46.537+03:00  INFO 156500 --- [physio_backend] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-02-23T16:15:46.652+03:00  INFO 156500 --- [physio_backend] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-02-23T16:17:47.400+03:00 DEBUG 39356 --- [physio_backend] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing POST /api/auth/signin
+2025-02-23T16:17:47.406+03:00 DEBUG 39356 --- [physio_backend] [http-nio-8080-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-02-23T16:17:47.410+03:00 DEBUG 39356 --- [physio_backend] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured POST /api/auth/signin
+2025-02-23T16:17:47.968+03:00 DEBUG 39356 --- [physio_backend] [http-nio-8080-exec-6] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
+2025-02-23T16:18:00.747+03:00  INFO 203704 --- [physio_backend] [main] c.p.p.ProfileControllerTest              : Starting ProfileControllerTest using Java 21.0.1 with PID 203704 (started by Zainab AT in D:\A ciminarProject\PhysioBackend\PhysiO_backend)
+2025-02-23T16:18:00.781+03:00  INFO 203704 --- [physio_backend] [main] c.p.p.ProfileControllerTest              : No active profile set, falling back to 1 default profile: "default"
+2025-02-23T16:18:11.869+03:00  INFO 203704 --- [physio_backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-02-23T16:18:13.341+03:00  INFO 203704 --- [physio_backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1190 ms. Found 9 JPA repository interfaces.
+2025-02-23T16:18:35.319+03:00  INFO 203704 --- [physio_backend] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-02-23T16:18:36.266+03:00  INFO 203704 --- [physio_backend] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.5.Final
+2025-02-23T16:18:37.000+03:00  INFO 203704 --- [physio_backend] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-02-23T16:18:38.844+03:00  INFO 203704 --- [physio_backend] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-02-23T16:18:39.331+03:00  INFO 203704 --- [physio_backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-02-23T16:18:41.322+03:00  INFO 203704 --- [physio_backend] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@46bbcb82
+2025-02-23T16:18:41.336+03:00  INFO 203704 --- [physio_backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-02-23T16:18:41.756+03:00  WARN 203704 --- [physio_backend] [main] org.hibernate.dialect.Dialect            : HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+2025-02-23T16:18:41.839+03:00  WARN 203704 --- [physio_backend] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-02-23T16:18:42.076+03:00  INFO 203704 --- [physio_backend] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 5.5.5
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-02-23T16:18:52.179+03:00  INFO 203704 --- [physio_backend] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-02-23T16:18:53.149+03:00  INFO 203704 --- [physio_backend] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-02-23T16:18:59.677+03:00  INFO 203704 --- [physio_backend] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-02-23T16:18:59.680+03:00  WARN 203704 --- [physio_backend] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-02-23T16:19:03.221+03:00  WARN 203704 --- [physio_backend] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-02-23T16:19:10.531+03:00 DEBUG 203704 --- [physio_backend] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, AuthTokenFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-02-23T16:19:17.224+03:00  INFO 203704 --- [physio_backend] [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2025-02-23T16:19:17.227+03:00  INFO 203704 --- [physio_backend] [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2025-02-23T16:19:17.239+03:00  INFO 203704 --- [physio_backend] [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 10 ms
+2025-02-23T16:19:17.720+03:00  INFO 203704 --- [physio_backend] [main] c.p.p.ProfileControllerTest              : Started ProfileControllerTest in 81.763 seconds (process running for 111.562)
+2025-02-23T16:19:21.413+03:00 DEBUG 203704 --- [physio_backend] [main] o.s.security.web.FilterChainProxy        : Securing GET /api/profiles/22
+2025-02-23T16:19:23.802+03:00 DEBUG 203704 --- [physio_backend] [main] o.s.security.web.FilterChainProxy        : Secured GET /api/profiles/22
+2025-02-23T16:19:25.076+03:00  INFO 203704 --- [physio_backend] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-02-23T16:19:25.094+03:00  INFO 203704 --- [physio_backend] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-02-23T16:19:25.284+03:00  INFO 203704 --- [physio_backend] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-02-23T16:20:39.019+03:00 DEBUG 39356 --- [physio_backend] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing POST /api/auth/signin
+2025-02-23T16:20:39.026+03:00 DEBUG 39356 --- [physio_backend] [http-nio-8080-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-02-23T16:20:39.033+03:00 DEBUG 39356 --- [physio_backend] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured POST /api/auth/signin
+2025-02-23T16:20:39.505+03:00 DEBUG 39356 --- [physio_backend] [http-nio-8080-exec-7] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
+2025-02-23T16:20:54.306+03:00  INFO 213868 --- [physio_backend] [main] c.p.p.ProfileControllerTest              : Starting ProfileControllerTest using Java 21.0.1 with PID 213868 (started by Zainab AT in D:\A ciminarProject\PhysioBackend\PhysiO_backend)
+2025-02-23T16:20:54.315+03:00  INFO 213868 --- [physio_backend] [main] c.p.p.ProfileControllerTest              : No active profile set, falling back to 1 default profile: "default"
+2025-02-23T16:21:05.803+03:00  INFO 213868 --- [physio_backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-02-23T16:21:07.344+03:00  INFO 213868 --- [physio_backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1258 ms. Found 9 JPA repository interfaces.
+2025-02-23T16:21:26.643+03:00  INFO 213868 --- [physio_backend] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-02-23T16:21:28.267+03:00  INFO 213868 --- [physio_backend] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.5.Final
+2025-02-23T16:21:29.002+03:00  INFO 213868 --- [physio_backend] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-02-23T16:21:31.404+03:00  INFO 213868 --- [physio_backend] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-02-23T16:21:31.897+03:00  INFO 213868 --- [physio_backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-02-23T16:21:35.248+03:00  INFO 213868 --- [physio_backend] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@f14d079
+2025-02-23T16:21:35.274+03:00  INFO 213868 --- [physio_backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-02-23T16:21:36.439+03:00  WARN 213868 --- [physio_backend] [main] org.hibernate.dialect.Dialect            : HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+2025-02-23T16:21:36.545+03:00  WARN 213868 --- [physio_backend] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-02-23T16:21:37.141+03:00  INFO 213868 --- [physio_backend] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 5.5.5
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-02-23T16:21:53.066+03:00  INFO 213868 --- [physio_backend] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-02-23T16:21:54.399+03:00  INFO 213868 --- [physio_backend] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-02-23T16:22:00.429+03:00  INFO 213868 --- [physio_backend] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-02-23T16:22:00.440+03:00  WARN 213868 --- [physio_backend] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-02-23T16:22:04.865+03:00  WARN 213868 --- [physio_backend] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-02-23T16:22:10.981+03:00 DEBUG 213868 --- [physio_backend] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, AuthTokenFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-02-23T16:22:17.555+03:00  INFO 213868 --- [physio_backend] [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2025-02-23T16:22:17.581+03:00  INFO 213868 --- [physio_backend] [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2025-02-23T16:22:17.595+03:00  INFO 213868 --- [physio_backend] [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 10 ms
+2025-02-23T16:22:18.165+03:00  INFO 213868 --- [physio_backend] [main] c.p.p.ProfileControllerTest              : Started ProfileControllerTest in 89.04 seconds (process running for 123.328)
+2025-02-23T16:22:21.384+03:00 DEBUG 213868 --- [physio_backend] [main] o.s.security.web.FilterChainProxy        : Securing GET /api/profiles/22
+2025-02-23T16:22:24.316+03:00 DEBUG 213868 --- [physio_backend] [main] o.s.security.web.FilterChainProxy        : Secured GET /api/profiles/22
+2025-02-23T16:22:25.945+03:00  INFO 213868 --- [physio_backend] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-02-23T16:22:25.962+03:00  INFO 213868 --- [physio_backend] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-02-23T16:22:26.134+03:00  INFO 213868 --- [physio_backend] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-02-23T16:49:36.069+03:00 DEBUG 39356 --- [physio_backend] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing POST /api/auth/signin
+2025-02-23T16:49:36.070+03:00 DEBUG 39356 --- [physio_backend] [http-nio-8080-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-02-23T16:49:36.071+03:00 DEBUG 39356 --- [physio_backend] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured POST /api/auth/signin
+2025-02-23T16:49:36.206+03:00 DEBUG 39356 --- [physio_backend] [http-nio-8080-exec-9] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
+2025-02-23T16:49:38.565+03:00  INFO 111848 --- [physio_backend] [main] c.p.p.ProfileControllerTest              : Starting ProfileControllerTest using Java 21.0.1 with PID 111848 (started by Zainab AT in D:\A ciminarProject\PhysioBackend\PhysiO_backend)
+2025-02-23T16:49:38.568+03:00  INFO 111848 --- [physio_backend] [main] c.p.p.ProfileControllerTest              : No active profile set, falling back to 1 default profile: "default"
+2025-02-23T16:49:40.736+03:00  INFO 111848 --- [physio_backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-02-23T16:49:41.020+03:00  INFO 111848 --- [physio_backend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 257 ms. Found 9 JPA repository interfaces.
+2025-02-23T16:49:44.887+03:00  INFO 111848 --- [physio_backend] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-02-23T16:49:45.215+03:00  INFO 111848 --- [physio_backend] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.5.Final
+2025-02-23T16:49:45.393+03:00  INFO 111848 --- [physio_backend] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-02-23T16:49:45.911+03:00  INFO 111848 --- [physio_backend] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-02-23T16:49:46.042+03:00  INFO 111848 --- [physio_backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-02-23T16:49:46.584+03:00  INFO 111848 --- [physio_backend] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@540ac21e
+2025-02-23T16:49:46.590+03:00  INFO 111848 --- [physio_backend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-02-23T16:49:46.725+03:00  WARN 111848 --- [physio_backend] [main] org.hibernate.dialect.Dialect            : HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+2025-02-23T16:49:46.745+03:00  WARN 111848 --- [physio_backend] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-02-23T16:49:46.816+03:00  INFO 111848 --- [physio_backend] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 5.5.5
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-02-23T16:49:49.593+03:00  INFO 111848 --- [physio_backend] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-02-23T16:49:49.928+03:00  INFO 111848 --- [physio_backend] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-02-23T16:49:51.448+03:00  INFO 111848 --- [physio_backend] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-02-23T16:49:51.450+03:00  WARN 111848 --- [physio_backend] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-02-23T16:49:52.391+03:00  WARN 111848 --- [physio_backend] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-02-23T16:49:53.717+03:00 DEBUG 111848 --- [physio_backend] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, AuthTokenFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-02-23T16:49:54.993+03:00  INFO 111848 --- [physio_backend] [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2025-02-23T16:49:54.993+03:00  INFO 111848 --- [physio_backend] [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2025-02-23T16:49:54.999+03:00  INFO 111848 --- [physio_backend] [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 4 ms
+2025-02-23T16:49:55.087+03:00  INFO 111848 --- [physio_backend] [main] c.p.p.ProfileControllerTest              : Started ProfileControllerTest in 17.326 seconds (process running for 24.579)
+2025-02-23T16:49:55.769+03:00 DEBUG 111848 --- [physio_backend] [main] o.s.security.web.FilterChainProxy        : Securing PUT /api/profiles/22
+2025-02-23T16:49:56.275+03:00 DEBUG 111848 --- [physio_backend] [main] o.s.security.web.FilterChainProxy        : Secured PUT /api/profiles/22
+2025-02-23T16:49:56.560+03:00  INFO 111848 --- [physio_backend] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-02-23T16:49:56.566+03:00  INFO 111848 --- [physio_backend] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-02-23T16:49:56.586+03:00  INFO 111848 --- [physio_backend] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
