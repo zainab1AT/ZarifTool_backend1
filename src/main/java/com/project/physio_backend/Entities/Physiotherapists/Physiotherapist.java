@@ -58,5 +58,4 @@ public class Physiotherapist {
         this.location = location;
         workingHours = new ArrayList<>();
     }
-
 }
