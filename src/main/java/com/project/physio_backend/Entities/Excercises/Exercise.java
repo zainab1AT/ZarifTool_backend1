@@ -1,5 +1,6 @@
 package com.project.physio_backend.Entities.Excercises;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.physio_backend.Entities.Image.Image;
 import com.project.physio_backend.Entities.Problems.Problem;
 
@@ -24,10 +25,9 @@ public class Exercise {
 
     private int exerciseDuration;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "problem_ID", nullable = false)
     private Problem problem;
-
-
 
 }

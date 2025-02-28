@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.physio_backend.Entities.Image.Image;
 import com.project.physio_backend.Entities.Problems.Problem;
 import com.project.physio_backend.Entities.Users.User;
@@ -21,7 +22,7 @@ public class Report {
   private Long reportID;
 
   private LocalDateTime timestamp;
-
+  @JsonIgnore
   @ManyToOne
   @JoinColumn(name = "user_ID", nullable = false)
   private User user;

@@ -38,19 +38,19 @@ public class ProblemController {
 
   @PostMapping(value = "/image", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
   public ResponseEntity<Problem> createProblemWithImage(
-            @RequestPart("problem") Problem problem,
-            @RequestPart("image") MultipartFile file) {
-        
-        Problem createdProblem = problemService.createProblemWithImage(problem, file);
-        return ResponseEntity.ok(createdProblem);
-    }
+      @RequestPart("problem") Problem problem,
+      @RequestPart("image") MultipartFile file) {
 
-    @PostMapping
-    public ResponseEntity<Problem> createProblem(
-            @RequestBody Problem problem){
-        Problem createdProblem = problemService.createProblem(problem);
-        return ResponseEntity.ok(createdProblem);
-    }
+    Problem createdProblem = problemService.createProblemWithImage(problem, file);
+    return ResponseEntity.ok(createdProblem);
+  }
+
+  @PostMapping
+  public ResponseEntity<Problem> createProblem(
+      @RequestBody Problem problem) {
+    Problem createdProblem = problemService.createProblem(problem);
+    return ResponseEntity.ok(createdProblem);
+  }
 
   @PutMapping("/{id}")
   public ResponseEntity<Problem> updateProblem(@PathVariable Long id, @RequestBody Problem problem) {

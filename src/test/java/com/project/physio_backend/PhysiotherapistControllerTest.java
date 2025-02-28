@@ -47,188 +47,194 @@ import io.restassured.response.Response;
 @SpringBootTest
 @AutoConfigureMockMvc
 public class PhysiotherapistControllerTest {
-   @Autowired
-    private MockMvc mockMvc;
+        @Autowired
+        private MockMvc mockMvc;
 
-    @Mock
-    private UserRepository userRepository;
+        @Mock
+        private UserRepository userRepository;
 
-    @MockBean
-    private PhysiotherapistService physiotherapistService; 
+        @MockBean
+        private PhysiotherapistService physiotherapistService;
 
-    @Mock
-    private ProfileRepository profileRepository;
+        @Mock
+        private ProfileRepository profileRepository;
 
-    @InjectMocks
-    private ProfileController profileController;
+        @InjectMocks
+        private ProfileController profileController;
 
-    private ObjectMapper objectMapper = new ObjectMapper().registerModule(new JavaTimeModule());
+        private ObjectMapper objectMapper = new ObjectMapper().registerModule(new JavaTimeModule());
 
-    private static String token;
+        private static String token;
 
-    @BeforeAll
-    public static void setup() {
-        Response response = given()
-                .contentType(ContentType.JSON)
-                .body("{\"username\":\"TestUser\",\"password\":\"test123\"}")
-                .when()
-                .post("http://localhost:8080/api/auth/signin")
-                .then()
-                .extract()
-                .response();
+        @BeforeAll
+        public static void setup() {
+                Response response = given()
+                                .contentType(ContentType.JSON)
+                                .body("{\"username\":\"nour22\",\"password\":\"nour2003\"}")
+                                .when()
+                                .post("http://localhost:8080/api/auth/signin")
+                                .then()
+                                .extract()
+                                .response();
 
-        token = response.jsonPath().getString("accessToken");
-        assertNotNull(token);
-    }
- 
-    @Test
-    void testAddPhysiotherapist() throws Exception {
-        Physiotherapist physiotherapist = new Physiotherapist();
-        physiotherapist.setClinicName("Test Clinic");
-        physiotherapist.setPhonenumber(123456789L); 
-        physiotherapist.setPrice(100.0);
-    
-        when(physiotherapistService.addPhysiotherapist(
-                eq("Test Clinic"), 
-                anyLong(),             
-                anyDouble(),                 
-                any(),                     
-                any(), 
-                any()))
-        .thenReturn(ResponseEntity.ok(physiotherapist));
-    
-        mockMvc.perform(post("/api/physiotherapists/add")
-                .header("Authorization", "Bearer " + token)
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(physiotherapist)))
-                .andExpect(MockMvcResultMatchers.status().isOk());
-    
-        verify(physiotherapistService, times(1))
-            .addPhysiotherapist(eq("Test Clinic"), anyLong(), anyDouble(), any(), any(), any());
-    }
-    
-    @Test
-    void testDeletePhysiotherapist() throws Exception {
-        long id = 1L;
+                token = response.jsonPath().getString("accessToken");
+                assertNotNull(token);
+        }
 
-        when(physiotherapistService.deletePhysiotherapist(id))
-                .thenReturn(ResponseEntity.ok().build());
+        @Test
+        void testAddPhysiotherapist() throws Exception {
+                Physiotherapist physiotherapist = new Physiotherapist();
+                physiotherapist.setClinicName("Test Clinic");
+                physiotherapist.setPhonenumber(123456789L);
+                physiotherapist.setPrice(100.0);
 
-        mockMvc.perform(delete("/api/physiotherapists/delete/{id}", id)
-                .header("Authorization", "Bearer " + token))
-                .andExpect(MockMvcResultMatchers.status().isOk());
+                when(physiotherapistService.addPhysiotherapist(
+                                eq("Test Clinic"),
+                                anyLong(),
+                                anyDouble(),
+                                any(),
+                                any(),
+                                any()))
+                                .thenReturn(ResponseEntity.ok(physiotherapist));
 
-        verify(physiotherapistService, times(1)).deletePhysiotherapist(id);
-    }                                                                      
+                mockMvc.perform(post("/api/physiotherapists/add")
+                                .header("Authorization", "Bearer " + token)
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(objectMapper.writeValueAsString(physiotherapist)))
+                                .andExpect(MockMvcResultMatchers.status().isOk());
 
-    @Test
-    void testGetPhysiotherapist() throws Exception {
-        long id = 1L;
-        Physiotherapist physiotherapist = new Physiotherapist("Test Clinic", 123456789L, 100.0, "Test Address", "Test Link", Location.BETHLEHEM);
+                verify(physiotherapistService, times(1))
+                                .addPhysiotherapist(eq("Test Clinic"), anyLong(), anyDouble(), any(), any(), any());
+        }
 
-        when(physiotherapistService.getPhysiotherapist(id))
-                .thenReturn(ResponseEntity.ok(physiotherapist));
+        @Test
+        void testDeletePhysiotherapist() throws Exception {
+                long id = 1L;
 
-        mockMvc.perform(get("/api/physiotherapists/{id}", id)
-                .header("Authorization", "Bearer " + token))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.clinicName").value("Test Clinic"));
+                when(physiotherapistService.deletePhysiotherapist(id))
+                                .thenReturn(ResponseEntity.ok().build());
 
-        verify(physiotherapistService, times(1)).getPhysiotherapist(id);
-    }
+                mockMvc.perform(delete("/api/physiotherapists/delete/{id}", id)
+                                .header("Authorization", "Bearer " + token))
+                                .andExpect(MockMvcResultMatchers.status().isOk());
 
-    @Test
-    void testUpdatePhysiotherapist() throws Exception {
-        long id = 1L;
-        Physiotherapist updatedPhysiotherapist = new Physiotherapist("Updated Clinic", 987654321L, 200.0, "Updated Address", "Updated Link", Location.BETHLEHEM);
+                verify(physiotherapistService, times(1)).deletePhysiotherapist(id);
+        }
 
-        when(physiotherapistService.updatePhysiotherapist(
-                eq(id),
-                eq(updatedPhysiotherapist.getClinicName()),
-                anyLong(),
-                anyDouble(),
-                any(),
-                any(),
-                any()))
-                .thenReturn(ResponseEntity.ok(updatedPhysiotherapist));
+        @Test
+        void testGetPhysiotherapist() throws Exception {
+                long id = 1L;
+                Physiotherapist physiotherapist = new Physiotherapist("Test Clinic", 123456789L, 100.0, "Test Address",
+                                "Test Link", Location.BETHLEHEM);
 
-        mockMvc.perform(put("/api/physiotherapists/update/{id}", id)
-                .header("Authorization", "Bearer " + token)
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(updatedPhysiotherapist)))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.clinicName").value("Updated Clinic"));
+                when(physiotherapistService.getPhysiotherapist(id))
+                                .thenReturn(ResponseEntity.ok(physiotherapist));
 
-        verify(physiotherapistService, times(1)).updatePhysiotherapist(
-                eq(id),
-                eq(updatedPhysiotherapist.getClinicName()),
-                anyLong(),
-                anyDouble(),
-                any(),
-                any(),
-                any()
-        );
-    }
+                mockMvc.perform(get("/api/physiotherapists/{id}", id)
+                                .header("Authorization", "Bearer " + token))
+                                .andExpect(MockMvcResultMatchers.status().isOk())
+                                .andExpect(MockMvcResultMatchers.jsonPath("$.clinicName").value("Test Clinic"));
 
-    @Test
-    void testGetPhysiotherapistsByCity() throws Exception {
-        when(physiotherapistService.getAllPhysiotherapistsforInCity(any())).thenReturn(List.of(new Physiotherapist()));
+                verify(physiotherapistService, times(1)).getPhysiotherapist(id);
+        }
 
-        mockMvc.perform(get("/api/physiotherapists/city/BETHLEHEM")
-                .header("Authorization", "Bearer " + token))
-                .andExpect(MockMvcResultMatchers.status().isOk());
-    }
+        @Test
+        void testUpdatePhysiotherapist() throws Exception {
+                long id = 1L;
+                Physiotherapist updatedPhysiotherapist = new Physiotherapist("Updated Clinic", 987654321L, 200.0,
+                                "Updated Address", "Updated Link", Location.BETHLEHEM);
 
-    @Test
-    void testAddWorkingHours() throws Exception {
-        WorkingHours workingHours = new WorkingHours(DayOfWeek.FRIDAY, "09:00", "17:00");
-        when(physiotherapistService.addWorkingHoursToPhysiotherapist(anyLong(), any(), any(), any())).thenReturn(ResponseEntity.ok(workingHours));
+                when(physiotherapistService.updatePhysiotherapist(
+                                eq(id),
+                                eq(updatedPhysiotherapist.getClinicName()),
+                                anyLong(),
+                                anyDouble(),
+                                any(),
+                                any(),
+                                any()))
+                                .thenReturn(ResponseEntity.ok(updatedPhysiotherapist));
 
-        mockMvc.perform(post("/api/physiotherapists/1/working-hours/add")
-                .header("Authorization", "Bearer " + token)
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(workingHours)))
-                .andExpect(MockMvcResultMatchers.status().isOk());
-    }
+                mockMvc.perform(put("/api/physiotherapists/update/{id}", id)
+                                .header("Authorization", "Bearer " + token)
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(objectMapper.writeValueAsString(updatedPhysiotherapist)))
+                                .andExpect(MockMvcResultMatchers.status().isOk())
+                                .andExpect(MockMvcResultMatchers.jsonPath("$.clinicName").value("Updated Clinic"));
 
-    @Test
-    void testGetWorkingHoursForTherapist() throws Exception {
-        when(physiotherapistService.getWorkingHoursForPhysiotherapist(1L)).thenReturn(List.of(new WorkingHours(DayOfWeek.FRIDAY, "09:00", "17:00")));
+                verify(physiotherapistService, times(1)).updatePhysiotherapist(
+                                eq(id),
+                                eq(updatedPhysiotherapist.getClinicName()),
+                                anyLong(),
+                                anyDouble(),
+                                any(),
+                                any(),
+                                any());
+        }
 
-        mockMvc.perform(get("/api/physiotherapists/1/working-hours")
-                .header("Authorization", "Bearer " + token))
-                .andExpect(MockMvcResultMatchers.status().isOk());
-    }
+        @Test
+        void testGetPhysiotherapistsByCity() throws Exception {
+                when(physiotherapistService.getAllPhysiotherapistsforInCity(any()))
+                                .thenReturn(List.of(new Physiotherapist()));
 
-    @Test
-    void testDeleteWorkingHour() throws Exception {
-        when(physiotherapistService.deleteWorkingHourForPhysiotherapist(1L)).thenReturn(ResponseEntity.ok().build());
+                mockMvc.perform(get("/api/physiotherapists/city/BETHLEHEM")
+                                .header("Authorization", "Bearer " + token))
+                                .andExpect(MockMvcResultMatchers.status().isOk());
+        }
 
-        mockMvc.perform(delete("/api/physiotherapists/working-hours/1/delete")
-                .header("Authorization", "Bearer " + token))
-                .andExpect(MockMvcResultMatchers.status().isOk());
-    }
+        @Test
+        void testAddWorkingHours() throws Exception {
+                WorkingHours workingHours = new WorkingHours(DayOfWeek.FRIDAY, "09:00", "17:00");
+                when(physiotherapistService.addWorkingHoursToPhysiotherapist(anyLong(), any(), any(), any()))
+                                .thenReturn(ResponseEntity.ok(workingHours));
 
-    @Test
-    void testDeleteAllWorkingHours() throws Exception {
-        when(physiotherapistService.deleteAllWorkingDaysForPhysiotherapist(1L)).thenReturn(ResponseEntity.ok().build());
+                mockMvc.perform(post("/api/physiotherapists/1/working-hours/add")
+                                .header("Authorization", "Bearer " + token)
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(objectMapper.writeValueAsString(workingHours)))
+                                .andExpect(MockMvcResultMatchers.status().isOk());
+        }
 
-        mockMvc.perform(delete("/api/physiotherapists/1/working-hours/delete-all")
-                .header("Authorization", "Bearer " + token))
-                .andExpect(MockMvcResultMatchers.status().isOk());
-    }
+        @Test
+        void testGetWorkingHoursForTherapist() throws Exception {
+                when(physiotherapistService.getWorkingHoursForPhysiotherapist(1L))
+                                .thenReturn(List.of(new WorkingHours(DayOfWeek.FRIDAY, "09:00", "17:00")));
 
-    @Test
-    void testUpdateWorkingHours() throws Exception {
-        WorkingHours updatedHours = new WorkingHours(DayOfWeek.FRIDAY, "10:00", "18:00");
-        when(physiotherapistService.updateWorkingDaysForPhysiotherapist(anyLong(), any(), any(), any())).thenReturn(ResponseEntity.ok(updatedHours));
+                mockMvc.perform(get("/api/physiotherapists/1/working-hours")
+                                .header("Authorization", "Bearer " + token))
+                                .andExpect(MockMvcResultMatchers.status().isOk());
+        }
 
-        mockMvc.perform(put("/api/physiotherapists/working-hours/1/update")
-                .header("Authorization", "Bearer " + token)
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(updatedHours)))
-                .andExpect(MockMvcResultMatchers.status().isOk());
-    }
+        @Test
+        void testDeleteWorkingHour() throws Exception {
+                when(physiotherapistService.deleteWorkingHourForPhysiotherapist(1L))
+                                .thenReturn(ResponseEntity.ok().build());
 
+                mockMvc.perform(delete("/api/physiotherapists/working-hours/1/delete")
+                                .header("Authorization", "Bearer " + token))
+                                .andExpect(MockMvcResultMatchers.status().isOk());
+        }
+
+        @Test
+        void testDeleteAllWorkingHours() throws Exception {
+                when(physiotherapistService.deleteAllWorkingDaysForPhysiotherapist(1L))
+                                .thenReturn(ResponseEntity.ok().build());
+
+                mockMvc.perform(delete("/api/physiotherapists/1/working-hours/delete-all")
+                                .header("Authorization", "Bearer " + token))
+                                .andExpect(MockMvcResultMatchers.status().isOk());
+        }
+
+        @Test
+        void testUpdateWorkingHours() throws Exception {
+                WorkingHours updatedHours = new WorkingHours(DayOfWeek.FRIDAY, "10:00", "18:00");
+                when(physiotherapistService.updateWorkingDaysForPhysiotherapist(anyLong(), any(), any(), any()))
+                                .thenReturn(ResponseEntity.ok(updatedHours));
+
+                mockMvc.perform(put("/api/physiotherapists/working-hours/1/update")
+                                .header("Authorization", "Bearer " + token)
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(objectMapper.writeValueAsString(updatedHours)))
+                                .andExpect(MockMvcResultMatchers.status().isOk());
+        }
 
 }

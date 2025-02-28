@@ -98,20 +98,20 @@ public class AuthController {
         userInfo.put("username", user.getUsername());
         String jwtToken = jwtUtils.generateTokenFromUsername(user.getUsername());
         userInfo.put("accessToken", jwtToken);
-    } else {
+      } else {
         User newUser = new User();
         newUser.setUsername(username);
-        
+
         // Set a default or random password (won't be used for login)
         newUser.setPassword(passwordEncoder.encode("defaultPassword123"));
-    
+
         User savedUser = userService.createUser(newUser);
-        
+
         userInfo.put("id", savedUser.getUserID());
         userInfo.put("username", savedUser.getUsername());
         String jwtToken = jwtUtils.generateTokenFromUsername(savedUser.getUsername());
         userInfo.put("accessToken", jwtToken);
-    }
+      }
 
       return ResponseEntity.ok(userInfo);
     } catch (Exception e) {
