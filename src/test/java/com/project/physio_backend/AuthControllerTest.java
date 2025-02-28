@@ -57,7 +57,7 @@ public class AuthControllerTest {
     public static void setup() {
         Response response = given()
                 .contentType(ContentType.JSON)
-                .body("{\"username\":\"TestUser\",\"password\":\"test123\"}")
+                .body("{\"username\":\"nour22\",\"password\":\"nour2003\"}")
                 .when()
                 .post("http://localhost:8080/api/auth/signin")
                 .then()
