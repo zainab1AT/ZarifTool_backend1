@@ -1,5 +1,7 @@
 package com.project.physio_backend.payload.request;
 
+import com.project.physio_backend.Entities.Users.Profile;
+
 import jakarta.validation.constraints.*;
 import lombok.Data;
 
