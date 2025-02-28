@@ -24,4 +24,12 @@ public class WorkingHours {
     @JoinColumn(name = "physiotherapist_ID", nullable = false)
     private Physiotherapist physiotherapist;
 
+    public WorkingHours(DayOfWeek dayOfWeek, String startTime , String endTime){
+        this.dayOfWeek = dayOfWeek;
+        this.startTime = startTime;
+        this.endTime = endTime;
+    }
+    public WorkingHours(){
+        
+    }
 }

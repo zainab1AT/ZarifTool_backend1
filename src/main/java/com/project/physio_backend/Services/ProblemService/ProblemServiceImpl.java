@@ -52,7 +52,6 @@ public class ProblemServiceImpl implements ProblemService {
     Problem existingProblem = getProblemById(id);
     existingProblem.setName(problem.getName());
     existingProblem.setDescription(problem.getDescription());
-    existingProblem.setDescriptiveImage(problem.getDescriptiveImage());
     return problemRepository.save(existingProblem);
   }
 

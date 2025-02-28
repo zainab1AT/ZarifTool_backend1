@@ -36,14 +36,6 @@ public class ImageController {
         }
     }
 
-    // @PostMapping("/upload")
-    // public ResponseEntity<Map<String, String>> uploadFile(@RequestParam("image")
-    // MultipartFile multipartFile,@RequestParam("type") ImageType imageType)
-    // throws IOException {
-    // String imageURL = imageService.uploadImage(multipartFile, imageType);
-    // return ResponseEntity.ok(Map.of("imageURL", imageURL));
-    // }
-
     @PostMapping("/upload/problem/{problemId}")
     public ResponseEntity<Map<String, String>> uploadImageForProblem(
             @PathVariable Long problemId,
