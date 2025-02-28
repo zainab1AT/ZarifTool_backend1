@@ -23,9 +23,6 @@ public class Problem {
   @Column(name = "Problem_ID", nullable = false)
   private Long problemID;
 
-  @Column(name = "descriptive_image")
-  private String descriptiveImage;
-
   @Column(columnDefinition = "TEXT")
   private String description;
 

@@ -22,9 +22,6 @@ public class Report {
 
   private LocalDateTime timestamp;
 
-  @Column(name = "user_problem_image")
-  private String userProblemImage;
-
   @ManyToOne
   @JoinColumn(name = "user_ID", nullable = false)
   private User user;
@@ -38,10 +35,6 @@ public class Report {
   private List<Problem> problems = new ArrayList<>();
 
   public Report() {
-  }
-
-  public Report(String userProblemImage) {
-    this.userProblemImage = userProblemImage;
     this.timestamp = LocalDateTime.now();
   }
 
