@@ -15,6 +15,7 @@ import com.project.physio_backend.Services.Physiotherapist.PhysiotherapistServic
 
 @RestController
 @RequestMapping("/api/physiotherapists")
+@CrossOrigin
 public class PhysiotherapistController {
 
     @Autowired
@@ -28,10 +29,11 @@ public class PhysiotherapistController {
     }
 
     @PostMapping(value = "/add/image", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<Physiotherapist> addPhysiotherapistWithImage(@RequestPart("physiotherapist") Physiotherapist physiotherapist,@RequestPart("image") MultipartFile file) {
+    public ResponseEntity<Physiotherapist> addPhysiotherapistWithImage(
+            @RequestPart("physiotherapist") Physiotherapist physiotherapist, @RequestPart("image") MultipartFile file) {
         return physiotherapistService.addPhysiotherapistWithImage(physiotherapist.getClinicName(),
                 physiotherapist.getPhonenumber(), physiotherapist.getPrice(), physiotherapist.getAddress(),
-                physiotherapist.getAddressLink(), physiotherapist.getLocation(),file);
+                physiotherapist.getAddressLink(), physiotherapist.getLocation(), file);
     }
 
     @DeleteMapping("/delete/{id}")

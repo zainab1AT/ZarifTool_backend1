@@ -7,9 +7,13 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 @RequestMapping("/api/progresses")
+@CrossOrigin
 public class ProgressController {
 
   private final ProgressService progressService;
@@ -28,10 +32,10 @@ public class ProgressController {
     return progressService.getProgressById(id);
   }
 
-  @PostMapping
+  @PostMapping("/{userID}/{problemID}")
   @ResponseStatus(HttpStatus.CREATED)
-  public Progress createProgress(@RequestBody Progress progress) {
-    return progressService.createProgress(progress);
+  public Progress createProgress(@PathVariable Long userID, @PathVariable Long problemID, @RequestBody Progress progress) {
+    return progressService.createProgress(userID, problemID, progress);
   }
 
   @PutMapping("/{id}")
@@ -43,5 +47,10 @@ public class ProgressController {
   @ResponseStatus(HttpStatus.NO_CONTENT)
   public void deleteProgress(@PathVariable Long id) {
     progressService.deleteProgress(id);
+  }
+
+  @PutMapping("/{id}/percentage")
+  public Progress addProgressPercentage(@PathVariable Long id, @RequestBody Double percentage) {
+    return progressService.addProgressPercentage(id, percentage);
   }
 }

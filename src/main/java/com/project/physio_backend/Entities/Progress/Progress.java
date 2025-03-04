@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.physio_backend.Entities.Problems.Problem;
+import com.project.physio_backend.Entities.Users.User;
 
 @Data
 @Entity
@@ -21,10 +22,15 @@ public class Progress {
   private LocalDateTime timestamp;
 
   private Double percentag;
-  @JsonIgnore
+
+  // @JsonIgnore
   @ManyToOne
   @JoinColumn(name = "problem_ID", nullable = false)
   private Problem problem;
+
+  @ManyToOne
+  @JoinColumn(name = "user_ID", nullable = false)
+  private User user;
 
   public Progress() {
   }

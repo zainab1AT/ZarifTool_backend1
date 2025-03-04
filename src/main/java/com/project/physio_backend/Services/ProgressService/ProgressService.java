@@ -10,9 +10,11 @@ public interface ProgressService {
 
   Progress getProgressById(Long id);
 
-  Progress createProgress(Progress progress);
+  Progress createProgress(Long userID, Long problemID, Progress progress);
 
   Progress updateProgress(Long id, Progress progress);
 
   void deleteProgress(Long id);
+
+  Progress addProgressPercentage (Long id, double percentage);
 }

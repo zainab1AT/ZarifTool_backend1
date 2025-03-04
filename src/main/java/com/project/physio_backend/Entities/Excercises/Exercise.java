@@ -25,7 +25,7 @@ public class Exercise {
 
     private int exerciseDuration;
 
-    @JsonIgnore
+    // @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "problem_ID", nullable = false)
     private Problem problem;

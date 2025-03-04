@@ -1,6 +1,6 @@
 package com.project.physio_backend.Entities.Image;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.physio_backend.Entities.Excercises.Exercise;
 import com.project.physio_backend.Entities.Physiotherapists.Physiotherapist;
 import com.project.physio_backend.Entities.Problems.Problem;
@@ -22,25 +22,28 @@ public class Image {
 
     @Enumerated(EnumType.STRING)
     private ImageType type;
-    private String name;  
-    private String url;   
+    private String name;
+    private String url;
 
-    @OneToOne(mappedBy = "image")  
-    private Problem problem;  
+    @OneToOne(mappedBy = "image")
+    @JsonIgnore
+    private Problem problem;
 
-    @OneToOne(mappedBy = "image")  
-    private Exercise exercise;  
+    @OneToOne(mappedBy = "image")
+    @JsonIgnore
+    private Exercise exercise;
 
-    @OneToOne(mappedBy = "image")  
-    private Report report; 
-    
-    @OneToOne(mappedBy = "image")  
+    @OneToOne(mappedBy = "image")
+    @JsonIgnore
+    private Report report;
+
+    @OneToOne(mappedBy = "image")
+    @JsonIgnore
     private Physiotherapist physiotherapist;
 
-    public Image(ImageType type, String name){
+    public Image(ImageType type, String name) {
         this.type = type;
         this.name = name;
     }
-
 
 }
