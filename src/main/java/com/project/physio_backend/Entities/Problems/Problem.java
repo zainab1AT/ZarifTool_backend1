@@ -9,6 +9,7 @@ import com.project.physio_backend.Entities.Image.Image;
 import com.project.physio_backend.Entities.Progress.Progress;
 import com.project.physio_backend.Entities.Reports.Report;
 import com.project.physio_backend.Entities.Users.User;
+import com.project.physio_backend.Entities.Prize.Prize;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -26,9 +27,13 @@ public class Problem {
   @Column(columnDefinition = "TEXT")
   private String description;
 
-
   @Column(columnDefinition = "TEXT")
   private String name;
+
+  private List<String> causes;
+  private List<String> symptoms;
+  private List<String> prevention;
+
 
 
   @JsonIgnore
@@ -38,6 +43,10 @@ public class Problem {
   @JsonIgnore
   @OneToMany(mappedBy = "problem", cascade = CascadeType.ALL)
   private List<Progress> progresses = new ArrayList<>();
+
+  @JsonIgnore
+  @OneToMany(mappedBy = "problem", cascade = CascadeType.ALL)
+  private List<Prize> prize = new ArrayList<>();
 
   @JsonIgnore
   @ManyToMany(fetch = FetchType.LAZY)
@@ -54,11 +63,17 @@ public class Problem {
   private Image image;
 
   public Problem() {
+    this.causes = new ArrayList<>();
+    this.symptoms = new ArrayList<>();
+    this.prevention = new ArrayList<>();
   }
 
   public Problem(String name, String description) {
     this.description = description;
     this.name = name;
+    this.causes = new ArrayList<>();
+    this.symptoms = new ArrayList<>();
+    this.prevention = new ArrayList<>();
   }
 
   public void addExercise(Exercise exercise) {
@@ -66,6 +81,13 @@ public class Problem {
       exercises = new ArrayList<>();
     }
     this.exercises.add(exercise);
+  }
+
+  public void addProgress(Progress progress) {
+    if (progresses == null) {
+      progresses = new ArrayList<>();
+    }
+    this.progresses.add(progress);
   }
 
 }

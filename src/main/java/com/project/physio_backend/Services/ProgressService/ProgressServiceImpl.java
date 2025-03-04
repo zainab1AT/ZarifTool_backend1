@@ -2,24 +2,29 @@ package com.project.physio_backend.Services.ProgressService;
 
 import com.project.physio_backend.Entities.Problems.Problem;
 import com.project.physio_backend.Entities.Progress.Progress;
+import com.project.physio_backend.Entities.Users.User;
+import com.project.physio_backend.Exceptions.Problems.ProblemNotFound;
 import com.project.physio_backend.Exceptions.Progress.ProgressNotFound;
-import com.project.physio_backend.Repositories.ProblemRepository;
-import com.project.physio_backend.Repositories.ProgressRepository;
+import com.project.physio_backend.Exceptions.Users.UserNotFoundException;
+import com.project.physio_backend.Repositories.*;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
 public class ProgressServiceImpl implements ProgressService {
-  private final ProblemRepository problemRepository;
 
-  private final ProgressRepository progressRepository;
+  @Autowired
+  private ProblemRepository problemRepository;
 
-  public ProgressServiceImpl(ProgressRepository progressRepository, ProblemRepository problemRepository) {
-    this.progressRepository = progressRepository;
-    this.problemRepository = problemRepository;
+  @Autowired
+  private ProgressRepository progressRepository;
 
-  }
+  @Autowired
+  private UserRepository userRepository;
 
   @Override
   public List<Progress> getAllProgresses() {
@@ -33,15 +38,20 @@ public class ProgressServiceImpl implements ProgressService {
   }
 
   @Override
-  public Progress createProgress(Progress progress) {
-    if (progress.getProblem() == null || progress.getProblem().getProblemID() == null) {
-      throw new IllegalArgumentException("Problem ID cannot be null");
-    }
+  public Progress createProgress(Long userID, Long problemID, Progress progress) {
 
-    Problem problem = problemRepository.findById(progress.getProblem().getProblemID())
-        .orElseThrow(() -> new ProgressNotFound("Problem not found with id " + progress.getProblem().getProblemID()));
+    Problem problem = problemRepository.findById(problemID)
+        .orElseThrow(() -> new ProblemNotFound("Problem not found with id " + problemID));
+
+    User user = userRepository.findById(userID)
+        .orElseThrow(() -> new UserNotFoundException(userID));
+    
+    progress.setTimestamp(LocalDateTime.now());
 
     progress.setProblem(problem);
+    progress.setUser(user);
+    problem.addProgress(progress);
+    user.addProgress(progress);
     return progressRepository.save(progress);
   }
 
@@ -58,4 +68,13 @@ public class ProgressServiceImpl implements ProgressService {
     Progress progress = getProgressById(id);
     progressRepository.delete(progress);
   }
+
+  @Override
+  public Progress addProgressPercentage(Long id, double percentage) {
+    Progress progress = getProgressById(id);
+    progress.setPercentag(progress.getPercentag()+ percentage);
+    return progressRepository.save(progress);
+  }
+
+  
 }

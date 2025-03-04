@@ -13,6 +13,7 @@ import com.project.physio_backend.Services.Exercise.ExerciseService;
 
 @RestController
 @RequestMapping("/api/exercises")
+@CrossOrigin
 public class ExcerciseController {
 
     @Autowired
@@ -29,11 +30,10 @@ public class ExcerciseController {
             @PathVariable long problemID,
             @RequestPart("exercise") Exercise exercise,
             @RequestPart("image") MultipartFile file) {
-        
-       return exerciseService.addExerciseWithImage(problemID, exercise.getExerciseDescription(),
-        exercise.getExerciseDuration(), file);
-    }
 
+        return exerciseService.addExerciseWithImage(problemID, exercise.getExerciseDescription(),
+                exercise.getExerciseDuration(), file);
+    }
 
     @DeleteMapping("/delete/{exerciseID}")
     public ResponseEntity<?> deleteExercise(@PathVariable long exerciseID) {
