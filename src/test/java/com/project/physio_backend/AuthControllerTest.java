@@ -99,7 +99,7 @@ public class AuthControllerTest {
 
         ResultActions result = mockMvc.perform(post("/api/auth/signup")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"username\":\"newUser1\",\"password\":\"newuser123\"}}"));
+                .content("{\"username\":\"newUser12\",\"password\":\"newuser123\"}}"));
 
         result.andExpect(MockMvcResultMatchers.status().isOk());
     }
