@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.project.physio_backend.Entities.Physiotherapists.DayOfWeek;
 import com.project.physio_backend.Entities.Physiotherapists.Physiotherapist;
 import com.project.physio_backend.Entities.Physiotherapists.WorkingHours;
+import com.project.physio_backend.Entities.Problems.Problem;
 import com.project.physio_backend.Entities.Users.Location;
 import com.project.physio_backend.Exceptions.Physiotherapists.PhysiotherapistNotFoundException;
 import com.project.physio_backend.Exceptions.WorkingHours.WorkingHoursNotFoundException;
@@ -31,6 +32,11 @@ public class PhysiotherapistServiceImpl implements PhysiotherapistService {
     private ImageService imageService;
 
     @Override
+    public List<Physiotherapist> getAllPhysiotherapists() {
+        return physiotherapistRepository.findAll();
+    }
+
+    @Override
     public ResponseEntity<Physiotherapist> addPhysiotherapist(String clinicName, long phoneNumber, double price,
             String address, String addressLink, Location location) {
         Physiotherapist physiotherapist = new Physiotherapist(clinicName, phoneNumber, price, address, addressLink,
@@ -41,13 +47,14 @@ public class PhysiotherapistServiceImpl implements PhysiotherapistService {
     }
 
     @Override
-    public ResponseEntity<Physiotherapist> addPhysiotherapistWithImage(String clinicName, long phoneNumber, double price,
-            String address, String addressLink, Location location,  MultipartFile multipartFile) {
+    public ResponseEntity<Physiotherapist> addPhysiotherapistWithImage(String clinicName, long phoneNumber,
+            double price,
+            String address, String addressLink, Location location, MultipartFile multipartFile) {
         Physiotherapist physiotherapist = new Physiotherapist(clinicName, phoneNumber, price, address, addressLink,
                 location);
 
         Physiotherapist savedPhysiotherapist = physiotherapistRepository.save(physiotherapist);
-        imageService.uploadImageForPhysiotherapist(multipartFile,physiotherapist.getPhysiotherapistID());
+        imageService.uploadImageForPhysiotherapist(multipartFile, physiotherapist.getPhysiotherapistID());
         return ResponseEntity.status(HttpStatus.CREATED).body(savedPhysiotherapist);
     }
 

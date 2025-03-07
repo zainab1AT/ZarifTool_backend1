@@ -82,6 +82,25 @@ public class PhysiotherapistControllerTest {
         }
 
         @Test
+        void testGetAllPhysiotherapists() throws Exception {
+                List<Physiotherapist> physiotherapists = List.of(
+                                new Physiotherapist("Clinic A", 123456789L, 100.0, "Address A", "Link A",
+                                                Location.BETHLEHEM),
+                                new Physiotherapist("Clinic B", 987654321L, 150.0, "Address B", "Link B",
+                                                Location.JERUSALEM));
+
+                when(physiotherapistService.getAllPhysiotherapists()).thenReturn(physiotherapists);
+
+                mockMvc.perform(get("/api/physiotherapists")
+                                .header("Authorization", "Bearer " + token))
+                                .andExpect(MockMvcResultMatchers.status().isOk())
+                                .andExpect(MockMvcResultMatchers.jsonPath("$[0].clinicName").value("Clinic A"))
+                                .andExpect(MockMvcResultMatchers.jsonPath("$[1].clinicName").value("Clinic B"));
+
+                verify(physiotherapistService, times(1)).getAllPhysiotherapists();
+        }
+
+        @Test
         void testAddPhysiotherapist() throws Exception {
                 Physiotherapist physiotherapist = new Physiotherapist();
                 physiotherapist.setClinicName("Test Clinic");

@@ -8,34 +8,43 @@ import org.springframework.web.multipart.MultipartFile;
 import com.project.physio_backend.Entities.Physiotherapists.DayOfWeek;
 import com.project.physio_backend.Entities.Physiotherapists.Physiotherapist;
 import com.project.physio_backend.Entities.Physiotherapists.WorkingHours;
+import com.project.physio_backend.Entities.Problems.Problem;
 import com.project.physio_backend.Entities.Users.Location;
 
 import io.jsonwebtoken.io.IOException;
 
-
 public interface PhysiotherapistService {
-    
-    public ResponseEntity<Physiotherapist> addPhysiotherapist (String clicncName, long phonenumber, double price, String address, String addressLink, Location location);
+        List<Physiotherapist> getAllPhysiotherapists();
 
-    public ResponseEntity<Physiotherapist> addPhysiotherapistWithImage (String clicncName, long phonenumber, double price, String address, String addressLink, Location location,  MultipartFile multipartFile)throws IOException;
+        public ResponseEntity<Physiotherapist> addPhysiotherapist(String clicncName, long phonenumber, double price,
+                        String address, String addressLink, Location location);
 
-    public ResponseEntity<?> deletePhysiotherapist (long physiotherapistID);
+        public ResponseEntity<Physiotherapist> addPhysiotherapistWithImage(String clicncName, long phonenumber,
+                        double price, String address, String addressLink, Location location,
+                        MultipartFile multipartFile)
+                        throws IOException;
 
-    public ResponseEntity<Physiotherapist> getPhysiotherapist (long physiotherapistID);
+        public ResponseEntity<?> deletePhysiotherapist(long physiotherapistID);
 
-    public ResponseEntity<Physiotherapist> updatePhysiotherapist (long physiotherapistID, String clicncName, long phonenumber, double price, String address, String addressLink, Location location);
+        public ResponseEntity<Physiotherapist> getPhysiotherapist(long physiotherapistID);
 
-    public List<Physiotherapist> getAllPhysiotherapistsforInCity (Location location);
+        public ResponseEntity<Physiotherapist> updatePhysiotherapist(long physiotherapistID, String clicncName,
+                        long phonenumber, double price, String address, String addressLink, Location location);
 
-    public ResponseEntity<WorkingHours> addWorkingHoursToPhysiotherapist(long physiotherapistID, DayOfWeek dayOfWeek, String startTime, String endTime);
+        public List<Physiotherapist> getAllPhysiotherapistsforInCity(Location location);
 
-    public List<WorkingHours> getWorkingHoursForPhysiotherapist(long physiotherapistID);
+        public ResponseEntity<WorkingHours> addWorkingHoursToPhysiotherapist(long physiotherapistID,
+                        DayOfWeek dayOfWeek,
+                        String startTime, String endTime);
 
-    public ResponseEntity<?> deleteWorkingHourForPhysiotherapist (long workingHoursID);
+        public List<WorkingHours> getWorkingHoursForPhysiotherapist(long physiotherapistID);
 
-    public ResponseEntity<?> deleteAllWorkingDaysForPhysiotherapist (long physiotherapistID);
+        public ResponseEntity<?> deleteWorkingHourForPhysiotherapist(long workingHoursID);
 
-    public ResponseEntity<WorkingHours> updateWorkingDaysForPhysiotherapist (long workingHoursID, DayOfWeek dayOfWeek,
-    String startTime, String endTime);
+        public ResponseEntity<?> deleteAllWorkingDaysForPhysiotherapist(long physiotherapistID);
+
+        public ResponseEntity<WorkingHours> updateWorkingDaysForPhysiotherapist(long workingHoursID,
+                        DayOfWeek dayOfWeek,
+                        String startTime, String endTime);
 
 }
