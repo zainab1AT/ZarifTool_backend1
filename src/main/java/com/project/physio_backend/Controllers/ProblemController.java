@@ -52,9 +52,14 @@ public class ProblemController {
     return ResponseEntity.ok(createdProblem);
   }
 
-  @PutMapping("/{id}")
-  public ResponseEntity<Problem> updateProblem(@PathVariable Long id, @RequestBody Problem problem) {
-    return ResponseEntity.ok(problemService.updateProblem(id, problem));
+  @PutMapping(value = "/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+  public ResponseEntity<Problem> updateProblem(
+      @PathVariable Long id,
+      @RequestPart("problem") Problem problem,
+      @RequestPart(value = "image", required = false) MultipartFile file) {
+
+    Problem updatedProblem = problemService.updateProblem(id, problem, file);
+    return ResponseEntity.ok(updatedProblem);
   }
 
   @DeleteMapping("/{id}")

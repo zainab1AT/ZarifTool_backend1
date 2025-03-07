@@ -35,10 +35,10 @@ public class ProblemServiceImpl implements ProblemService {
   }
 
   @Override
-  public Problem createProblemWithImage(Problem problem,MultipartFile multipartFile) {
+  public Problem createProblemWithImage(Problem problem, MultipartFile multipartFile) {
 
-    Problem problem1= problemRepository.save(problem);
-    imageService.uploadImageForProblem(multipartFile,problem1.getProblemID());
+    Problem problem1 = problemRepository.save(problem);
+    imageService.uploadImageForProblem(multipartFile, problem1.getProblemID());
     return problem1;
   }
 
@@ -48,10 +48,16 @@ public class ProblemServiceImpl implements ProblemService {
   }
 
   @Override
-  public Problem updateProblem(Long id, Problem problem) {
+  public Problem updateProblem(Long id, Problem problem, MultipartFile multipartFile) {
     Problem existingProblem = getProblemById(id);
+
     existingProblem.setName(problem.getName());
     existingProblem.setDescription(problem.getDescription());
+
+    if (multipartFile != null && !multipartFile.isEmpty()) {
+      imageService.uploadImageForProblem(multipartFile, existingProblem.getProblemID());
+    }
+
     return problemRepository.save(existingProblem);
   }
 

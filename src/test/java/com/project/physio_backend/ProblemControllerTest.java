@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.web.servlet.MockMvc;
@@ -165,17 +166,31 @@ public class ProblemControllerTest {
 
                 Problem updatedProblem = new Problem("UpdatedProblem", "UpdatedDescription");
 
-                when(problemService.updateProblem(eq(1L), any(Problem.class))).thenReturn(updatedProblem);
+                MockMultipartFile file = new MockMultipartFile(
+                                "image",
+                                "test.jpg",
+                                MediaType.IMAGE_JPEG_VALUE,
+                                "test image content".getBytes());
 
-                mockMvc.perform(put("/api/problems/{id}", 1L)
+                MockMultipartFile problemJson = new MockMultipartFile(
+                                "problem",
+                                "",
+                                MediaType.APPLICATION_JSON_VALUE,
+                                objectMapper.writeValueAsBytes(updatedProblem));
+
+                when(problemService.updateProblem(eq(1L), any(Problem.class), any(MultipartFile.class)))
+                                .thenReturn(updatedProblem);
+
+                mockMvc.perform(MockMvcRequestBuilders.multipart(HttpMethod.PUT, "/api/problems/{id}", 1L)
+                                .file(problemJson)
+                                .file(file)
                                 .header("Authorization", "Bearer " + token)
-                                .contentType(MediaType.APPLICATION_JSON)
-                                .content(objectMapper.writeValueAsString(updatedProblem)))
+                                .contentType(MediaType.MULTIPART_FORM_DATA_VALUE))
                                 .andExpect(status().isOk())
                                 .andExpect(jsonPath("$.name").value("UpdatedProblem"))
                                 .andExpect(jsonPath("$.description").value("UpdatedDescription"));
 
-                verify(problemService, times(1)).updateProblem(eq(1L), any(Problem.class));
+                verify(problemService, times(1)).updateProblem(eq(1L), any(Problem.class), any(MultipartFile.class));
         }
 
         @Test

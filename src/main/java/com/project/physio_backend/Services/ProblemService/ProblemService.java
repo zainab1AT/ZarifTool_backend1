@@ -15,12 +15,11 @@ public interface ProblemService {
 
   Problem getProblemById(Long id);
 
-  Problem createProblemWithImage(Problem problem, MultipartFile multipartFile)throws IOException;
+  Problem createProblemWithImage(Problem problem, MultipartFile multipartFile) throws IOException;
 
-  Problem createProblem(Problem problem)throws IOException;
+  Problem createProblem(Problem problem) throws IOException;
 
-
-  Problem updateProblem(Long id, Problem problem);
+  Problem updateProblem(Long id, Problem problem, MultipartFile multipartFile);
 
   void deleteProblem(Long id);
 
