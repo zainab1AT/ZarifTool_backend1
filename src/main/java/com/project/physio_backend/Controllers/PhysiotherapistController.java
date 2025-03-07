@@ -46,6 +46,11 @@ public class PhysiotherapistController {
         return physiotherapistService.getPhysiotherapist(id);
     }
 
+    @GetMapping
+    public List<Physiotherapist> getallPhysiotherapist() {
+        return physiotherapistService.getAllPhysiotherapists();
+    }
+
     @PutMapping("/update/{id}")
     public ResponseEntity<Physiotherapist> updatePhysiotherapist(@PathVariable long id,
             @RequestBody Physiotherapist physiotherapist) {
