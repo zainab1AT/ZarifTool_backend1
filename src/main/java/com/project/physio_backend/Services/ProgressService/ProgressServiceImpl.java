@@ -1,5 +1,6 @@
 package com.project.physio_backend.Services.ProgressService;
 
+import com.project.physio_backend.Entities.Excercises.Exercise;
 import com.project.physio_backend.Entities.Problems.Problem;
 import com.project.physio_backend.Entities.Progress.Progress;
 import com.project.physio_backend.Entities.Users.User;
@@ -12,7 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ProgressServiceImpl implements ProgressService {
@@ -45,13 +48,19 @@ public class ProgressServiceImpl implements ProgressService {
 
     User user = userRepository.findById(userID)
         .orElseThrow(() -> new UserNotFoundException(userID));
-    
+
     progress.setTimestamp(LocalDateTime.now());
 
     progress.setProblem(problem);
     progress.setUser(user);
     problem.addProgress(progress);
     user.addProgress(progress);
+    List<Exercise> problemExercises = problem.getExercises();
+    Collections.shuffle(problemExercises);
+    List<Exercise> randomExercises = problemExercises.stream()
+        .limit(5)
+        .collect(Collectors.toList());
+    progress.setExercises(randomExercises);
     return progressRepository.save(progress);
   }
 
@@ -72,9 +81,8 @@ public class ProgressServiceImpl implements ProgressService {
   @Override
   public Progress addProgressPercentage(Long id, double percentage) {
     Progress progress = getProgressById(id);
-    progress.setPercentag(progress.getPercentag()+ percentage);
+    progress.setPercentag(progress.getPercentag() + percentage);
     return progressRepository.save(progress);
   }
 
-  
 }

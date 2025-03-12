@@ -4,8 +4,10 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.project.physio_backend.Entities.Excercises.Exercise;
 import com.project.physio_backend.Entities.Problems.Problem;
 import com.project.physio_backend.Entities.Users.User;
 
@@ -31,6 +33,11 @@ public class Progress {
   @ManyToOne
   @JoinColumn(name = "user_ID", nullable = false)
   private User user;
+
+  @JsonIgnore
+  @ManyToMany(fetch = FetchType.LAZY)
+  @JoinTable(name = "progress-exercises", joinColumns = @JoinColumn(name = "progress_ID"), inverseJoinColumns = @JoinColumn(name = "exercise_ID"))
+  private List<Exercise> exercises;
 
   public Progress() {
   }

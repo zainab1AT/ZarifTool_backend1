@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.project.physio_backend.Config.StringListConverter;
 import com.project.physio_backend.Entities.Excercises.Exercise;
 import com.project.physio_backend.Entities.Image.Image;
 import com.project.physio_backend.Entities.Progress.Progress;
@@ -30,11 +31,17 @@ public class Problem {
   @Column(columnDefinition = "TEXT")
   private String name;
 
+  @Convert(converter = StringListConverter.class)
+  @Column(columnDefinition = "TEXT")
   private List<String> causes;
+
+  @Convert(converter = StringListConverter.class)
+  @Column(columnDefinition = "TEXT")
   private List<String> symptoms;
+
+  @Convert(converter = StringListConverter.class)
+  @Column(columnDefinition = "TEXT")
   private List<String> prevention;
-
-
 
   @JsonIgnore
   @OneToMany(mappedBy = "problem", cascade = CascadeType.ALL)
