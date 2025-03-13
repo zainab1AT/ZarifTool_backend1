@@ -1,4 +1,4 @@
-package com.project.physio_backend.Security.jwt;
+package com.project.physio_backend.security.jwt;
 
 import java.io.IOException;
 
@@ -14,7 +14,7 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.project.physio_backend.Security.services.UserDetailsServiceImpl;
+import com.project.physio_backend.security.services.UserDetailsServiceImpl;
 
 public class AuthTokenFilter extends OncePerRequestFilter {
   @Autowired

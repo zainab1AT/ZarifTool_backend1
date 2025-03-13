@@ -1,4 +1,4 @@
-package com.project.physio_backend.Security.services;
+package com.project.physio_backend.security.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

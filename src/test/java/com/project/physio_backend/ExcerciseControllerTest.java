@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -64,7 +65,7 @@ public class ExcerciseControllerTest {
   public static void setup() {
     Response response = given()
         .contentType(ContentType.JSON)
-        .body("{\"username\":\"nour22\",\"password\":\"nour2003\"}")
+        .body("{\"username\":\"nour2\",\"password\":\"nour2003\"}")
         .when()
         .post("http://localhost:8080/api/auth/signin")
         .then()
@@ -142,23 +143,38 @@ public class ExcerciseControllerTest {
   }
 
   @Test
-  void testUpdateExercise() throws Exception {
+  void testUpdateExerciseWithImage() throws Exception {
     Exercise exercise = new Exercise();
     exercise.setExerciseDescription("UpdatedDescription");
     exercise.setExerciseDuration(45);
 
-    when(exerciseService.updateExercise(eq(1L), any(String.class), any(Integer.class)))
+    MockMultipartFile file = new MockMultipartFile(
+        "image",
+        "test.jpg",
+        MediaType.IMAGE_JPEG_VALUE,
+        "test image content".getBytes());
+
+    MockMultipartFile exerciseJson = new MockMultipartFile(
+        "exercise",
+        "",
+        MediaType.APPLICATION_JSON_VALUE,
+        objectMapper.writeValueAsBytes(exercise));
+
+    when(exerciseService.updateExerciseWithImage(eq(1L), any(String.class), any(Integer.class),
+        any(MultipartFile.class)))
         .thenReturn(ResponseEntity.status(HttpStatus.OK).body(exercise));
 
-    mockMvc.perform(put("/api/exercises/update/{exerciseID}", 1L)
+    mockMvc.perform(MockMvcRequestBuilders.multipart(HttpMethod.PUT, "/api/exercises/update/{exerciseID}", 1L)
+        .file(file)
+        .file(exerciseJson)
         .header("Authorization", "Bearer " + token)
-        .contentType(MediaType.APPLICATION_JSON)
-        .content(objectMapper.writeValueAsString(exercise)))
+        .contentType(MediaType.MULTIPART_FORM_DATA_VALUE))
         .andExpect(status().isOk())
         .andExpect(jsonPath("$.exerciseDescription").value("UpdatedDescription"))
         .andExpect(jsonPath("$.exerciseDuration").value(45));
 
-    verify(exerciseService, times(1)).updateExercise(eq(1L), any(String.class), any(Integer.class));
+    verify(exerciseService, times(1)).updateExerciseWithImage(eq(1L), any(String.class), any(Integer.class),
+        any(MultipartFile.class));
   }
 
   @Test

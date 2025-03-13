@@ -40,10 +40,14 @@ public class ExcerciseController {
         return exerciseService.deleteExercise(exerciseID);
     }
 
-    @PutMapping("/update/{exerciseID}")
-    public ResponseEntity<Exercise> updateExercise(@PathVariable long exerciseID, @RequestBody Exercise exercise) {
-        return exerciseService.updateExercise(exerciseID,
-                exercise.getExerciseDescription(), exercise.getExerciseDuration());
+    @PutMapping(value = "/update/{exerciseID}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<Exercise> updateExerciseWithImage(
+            @PathVariable long exerciseID,
+            @RequestPart("exercise") Exercise exercise,
+            @RequestPart("image") MultipartFile file) {
+
+        return exerciseService.updateExerciseWithImage(exerciseID, exercise.getExerciseDescription(),
+                exercise.getExerciseDuration(), file);
     }
 
     @GetMapping("/{exerciseID}")

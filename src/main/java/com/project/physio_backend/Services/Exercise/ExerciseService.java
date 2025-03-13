@@ -10,16 +10,18 @@ import com.project.physio_backend.Entities.Excercises.Exercise;
 import io.jsonwebtoken.io.IOException;
 
 public interface ExerciseService {
-    
-    public ResponseEntity<Exercise> addExercise (long problemID, String exerciseDescription, int exerciseDuration);
 
-    public ResponseEntity<Exercise> addExerciseWithImage (long problemID, String exerciseDescription, int exerciseDuration,  MultipartFile multipartFile)throws IOException;
+    public ResponseEntity<Exercise> addExercise(long problemID, String exerciseDescription, int exerciseDuration);
 
-    public ResponseEntity<?> deleteExercise (long exerciseID);
+    public ResponseEntity<Exercise> addExerciseWithImage(long problemID, String exerciseDescription,
+            int exerciseDuration, MultipartFile multipartFile) throws IOException;
 
-    public ResponseEntity<Exercise> getExercise (long exerciseID);
+    public ResponseEntity<?> deleteExercise(long exerciseID);
 
-    public ResponseEntity<Exercise> updateExercise (long exerciseID, String exerciseDescription, int exerciseDuration);
+    public ResponseEntity<Exercise> getExercise(long exerciseID);
 
-    public List<Exercise> getAllExercisesforProblem (long problemID);
+    public ResponseEntity<Exercise> updateExerciseWithImage(long exerciseID, String exerciseDescription,
+            int exerciseDuration, MultipartFile multipartFile) throws IOException;
+
+    public List<Exercise> getAllExercisesforProblem(long problemID);
 }

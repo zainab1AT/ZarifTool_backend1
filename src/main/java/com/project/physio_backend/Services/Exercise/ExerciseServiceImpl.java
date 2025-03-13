@@ -14,6 +14,8 @@ import com.project.physio_backend.Repositories.*;
 // import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 import com.project.physio_backend.Services.ImageService.ImageService;
 
+import io.jsonwebtoken.io.IOException;
+
 @Service
 public class ExerciseServiceImpl implements ExerciseService {
 
@@ -74,14 +76,20 @@ public class ExerciseServiceImpl implements ExerciseService {
     // }
 
     @Override
-    public ResponseEntity<Exercise> updateExercise(long exerciseID, String exerciseDescription,
-            int exerciseDuration) {
+    public ResponseEntity<Exercise> updateExerciseWithImage(long exerciseID, String exerciseDescription,
+            int exerciseDuration, MultipartFile multipartFile) throws IOException {
         Exercise exercise = exerciseRepository.findById(exerciseID)
                 .orElseThrow(() -> new ExerciseNotFoundException(exerciseID));
         exercise.setExerciseDescription(exerciseDescription);
         exercise.setExerciseDuration(exerciseDuration);
 
-        return ResponseEntity.status(HttpStatus.OK).body(exerciseRepository.save(exercise));
+        // Save the updated exercise
+        Exercise updatedExercise = exerciseRepository.save(exercise);
+
+        // Upload the new image
+        imageService.uploadImageForExercise(multipartFile, updatedExercise.getExerciseID());
+
+        return ResponseEntity.status(HttpStatus.OK).body(updatedExercise);
     }
 
     @Override
