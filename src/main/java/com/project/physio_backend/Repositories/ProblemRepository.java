@@ -9,6 +9,6 @@ import com.project.physio_backend.Entities.Problems.Problem;
 
 @Repository
 public interface ProblemRepository extends JpaRepository<Problem, Long> {
-  Optional<Problem> findByname(String name);
+  Optional<Problem> findByName(String name);
 
 }

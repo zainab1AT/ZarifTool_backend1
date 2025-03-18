@@ -1,5 +1,6 @@
 package com.project.physio_backend.Controllers;
 
+import com.project.physio_backend.Entities.Excercises.Exercise;
 import com.project.physio_backend.Entities.Progress.Progress;
 import com.project.physio_backend.Services.ProgressService.ProgressService;
 
@@ -7,9 +8,6 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 @RequestMapping("/api/progresses")
@@ -32,9 +30,10 @@ public class ProgressController {
     return progressService.getProgressById(id);
   }
 
-  @PostMapping("/{userID}/{problemID}")
+  @PostMapping("/user/{userID}/problem/{problemID}")
   @ResponseStatus(HttpStatus.CREATED)
-  public Progress createProgress(@PathVariable Long userID, @PathVariable Long problemID, @RequestBody Progress progress) {
+  public Progress createProgress(@PathVariable Long userID, @PathVariable Long problemID,
+      @RequestBody Progress progress) {
     return progressService.createProgress(userID, problemID, progress);
   }
 
@@ -53,4 +52,16 @@ public class ProgressController {
   public Progress addProgressPercentage(@PathVariable Long id, @RequestBody Double percentage) {
     return progressService.addProgressPercentage(id, percentage);
   }
+
+  @GetMapping("/user/{userID}/problem/{problemID}")
+  @ResponseStatus(HttpStatus.CREATED)
+  public List<Progress> getAllProgressesForAUserInAProblem(@PathVariable Long userID, @PathVariable Long problemID) {
+    return progressService.getAllProgressesForAUserInAProblem(userID, problemID);
+  }
+
+  @GetMapping("/{id}/exercises")
+  public List<Exercise> getAllExercisesForProgress(@PathVariable Long id) {
+    return progressService.getAllExercisesForProgress(id);
+  }
+
 }

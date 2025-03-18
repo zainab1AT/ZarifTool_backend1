@@ -1,4 +1,4 @@
-package com.project.physio_backend.security;
+package com.project.physio_backend.Security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -14,9 +14,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.project.physio_backend.security.jwt.AuthEntryPointJwt;
-import com.project.physio_backend.security.jwt.AuthTokenFilter;
-import com.project.physio_backend.security.services.UserDetailsServiceImpl;
+import com.project.physio_backend.Security.jwt.AuthEntryPointJwt;
+import com.project.physio_backend.Security.jwt.AuthTokenFilter;
+import com.project.physio_backend.Security.services.UserDetailsServiceImpl;
 
 @Configuration
 @EnableMethodSecurity

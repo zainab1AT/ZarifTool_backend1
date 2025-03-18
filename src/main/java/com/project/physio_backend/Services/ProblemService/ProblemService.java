@@ -29,4 +29,8 @@ public interface ProblemService {
 
   List<Problem> getUserProblems(Long problemId);
 
+  List<String> getProblemNames ();
+
+  Problem getProblemByName (String name);
+
 }

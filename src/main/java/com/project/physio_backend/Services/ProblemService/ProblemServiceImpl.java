@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.List;
+import java.util.*;
 
 @Service
 public class ProblemServiceImpl implements ProblemService {
@@ -75,11 +75,10 @@ public class ProblemServiceImpl implements ProblemService {
     Problem problem = problemRepository.findById(problemId)
         .orElseThrow(() -> new RuntimeException("Problem not found"));
 
-    if (user.getProblems().contains(problem)) {
-      throw new RuntimeException("User already has this problem assigned");
+    if (!user.getProblems().contains(problem)) {
+      user.getProblems().add(problem);
     }
 
-    user.getProblems().add(problem);
     return userRepository.save(user);
   }
 
@@ -98,6 +97,24 @@ public class ProblemServiceImpl implements ProblemService {
     User user = userRepository.findById(userId)
         .orElseThrow(() -> new RuntimeException("User not found with id " + userId));
     return user.getProblems();
+  }
+
+  @Override
+  public List<String> getProblemNames() {
+    List<Problem> problems = problemRepository.findAll();
+    List<String> names = new ArrayList<>();
+
+    for (Problem problem : problems) {
+      names.add(problem.getName());
+    }
+
+    return names;
+  }
+
+  @Override
+  public Problem getProblemByName(String name) {
+    return problemRepository.findByName(name)
+        .orElseThrow(() -> new ProblemNotFound("Problem not found with name: " + name)); // ✅ Corrected error message
   }
 
 }

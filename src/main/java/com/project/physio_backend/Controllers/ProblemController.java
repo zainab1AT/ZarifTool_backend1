@@ -83,4 +83,14 @@ public class ProblemController {
     return ResponseEntity.ok(problemService.addProblemToUser(userId, problemId));
   }
 
+  @GetMapping("/names")
+  public ResponseEntity<List<String>> getProblemNames() {
+    return ResponseEntity.ok(problemService.getProblemNames());
+  }
+
+  @GetMapping("/name/{name}")
+  public ResponseEntity<Problem> getProblemByName(@PathVariable String name) {
+    return ResponseEntity.ok(problemService.getProblemByName(name));
+  }
+
 }

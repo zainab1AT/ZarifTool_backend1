@@ -1,4 +1,4 @@
-package com.project.physio_backend.security.jwt;
+package com.project.physio_backend.Security.jwt;
 
 import java.io.IOException;
 import java.util.*;

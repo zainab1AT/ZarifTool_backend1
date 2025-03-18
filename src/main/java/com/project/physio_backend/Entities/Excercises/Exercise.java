@@ -1,8 +1,11 @@
 package com.project.physio_backend.Entities.Excercises;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.physio_backend.Entities.Image.Image;
 import com.project.physio_backend.Entities.Problems.Problem;
+import com.project.physio_backend.Entities.Progress.Progress;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -29,5 +32,13 @@ public class Exercise {
     @ManyToOne
     @JoinColumn(name = "problem_ID", nullable = false)
     private Problem problem;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "exercises") // Link to Progress
+    private List<Progress> progress;
+
+    public List<Progress> getProgresses() {
+        return progress;
+    }
 
 }

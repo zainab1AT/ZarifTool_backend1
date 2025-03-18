@@ -13,8 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -42,26 +41,43 @@ public class ProgressServiceImpl implements ProgressService {
 
   @Override
   public Progress createProgress(Long userID, Long problemID, Progress progress) {
-
     Problem problem = problemRepository.findById(problemID)
         .orElseThrow(() -> new ProblemNotFound("Problem not found with id " + problemID));
 
     User user = userRepository.findById(userID)
         .orElseThrow(() -> new UserNotFoundException(userID));
 
-    progress.setTimestamp(LocalDateTime.now());
+    // Check if user already has a progress entry for today
+    LocalDateTime startOfDay = LocalDateTime.now().toLocalDate().atStartOfDay();
+    LocalDateTime endOfDay = startOfDay.plusDays(1);
 
+    boolean alreadyExists = progressRepository.existsByUserAndProblemAndTimestampBetween(user, problem, startOfDay,
+        endOfDay);
+    Optional<Progress> existingProgress = progressRepository.findByUserAndProblemAndTimestampBetween(user, problem,
+        startOfDay, endOfDay);
+
+    if (alreadyExists) {
+      // throw new IllegalStateException("User already has progress for today.");
+      return existingProgress.get();
+    }
+
+    // Create new progress
+    progress.setTimestamp(LocalDateTime.now());
     progress.setProblem(problem);
     progress.setUser(user);
-    problem.addProgress(progress);
-    user.addProgress(progress);
     List<Exercise> problemExercises = problem.getExercises();
     Collections.shuffle(problemExercises);
     List<Exercise> randomExercises = problemExercises.stream()
         .limit(5)
         .collect(Collectors.toList());
     progress.setExercises(randomExercises);
-    return progressRepository.save(progress);
+    progress = progressRepository.save(progress);
+    problem.addProgress(progress);
+    user.addProgress(progress);
+
+    // Assign 5 random exercises
+
+    return progress;
   }
 
   @Override
@@ -81,8 +97,28 @@ public class ProgressServiceImpl implements ProgressService {
   @Override
   public Progress addProgressPercentage(Long id, double percentage) {
     Progress progress = getProgressById(id);
+    progress.setTimestamp(progress.getTimestamp());
     progress.setPercentag(progress.getPercentag() + percentage);
     return progressRepository.save(progress);
+  }
+
+  @Override
+  public List<Progress> getAllProgressesForAUserInAProblem(Long userID, Long problemID) {
+    User user = userRepository.findById(userID)
+        .orElseThrow(() -> new UserNotFoundException(userID));
+
+    Problem problem = problemRepository.findById(problemID)
+        .orElseThrow(() -> new ProblemNotFound("Problem not found with id " + problemID));
+
+    return progressRepository.findByUserAndProblem(user, problem);
+  }
+
+  @Override
+  public List<Exercise> getAllExercisesForProgress(Long id) {
+    Progress progress = progressRepository.findById(id)
+        .orElseThrow(() -> new ProgressNotFound("Progress not found with id " + id));
+
+    return progress.getExercises();
   }
 
 }

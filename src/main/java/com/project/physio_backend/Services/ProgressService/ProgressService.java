@@ -1,7 +1,7 @@
 package com.project.physio_backend.Services.ProgressService;
 
+import com.project.physio_backend.Entities.Excercises.Exercise;
 import com.project.physio_backend.Entities.Progress.Progress;
-
 
 import java.util.List;
 
@@ -16,5 +16,9 @@ public interface ProgressService {
 
   void deleteProgress(Long id);
 
-  Progress addProgressPercentage (Long id, double percentage);
+  Progress addProgressPercentage(Long id, double percentage);
+
+  List<Progress> getAllProgressesForAUserInAProblem(Long userID, Long problemID);
+
+  List<Exercise> getAllExercisesForProgress(Long id);
 }

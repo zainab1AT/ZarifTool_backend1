@@ -72,7 +72,7 @@ public class ReportServiceImpl implements ReportService {
     Set<Problem> uniqueProblems = new HashSet<>(report.getProblems());
 
     for (String problemName : problemNames) {
-      problemRepository.findByname(problemName).ifPresent(uniqueProblems::add);
+      problemRepository.findByName(problemName).ifPresent(uniqueProblems::add);
     }
 
     report.setProblems(new ArrayList<>(uniqueProblems));

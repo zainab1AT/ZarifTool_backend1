@@ -35,7 +35,7 @@ public class Progress {
   private User user;
 
   @JsonIgnore
-  @ManyToMany(fetch = FetchType.LAZY)
+  @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   @JoinTable(name = "progress-exercises", joinColumns = @JoinColumn(name = "progress_ID"), inverseJoinColumns = @JoinColumn(name = "exercise_ID"))
   private List<Exercise> exercises;
 
