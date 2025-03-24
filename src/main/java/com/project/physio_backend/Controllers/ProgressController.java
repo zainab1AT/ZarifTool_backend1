@@ -59,9 +59,35 @@ public class ProgressController {
     return progressService.getAllProgressesForAUserInAProblem(userID, problemID);
   }
 
+  @GetMapping("/user/{userID}")
+  @ResponseStatus(HttpStatus.CREATED)
+  public List<Progress> getAllProgressesForUser(@PathVariable Long userID) {
+    return progressService.getAllProgressesForUser(userID);
+  }
+
   @GetMapping("/{id}/exercises")
   public List<Exercise> getAllExercisesForProgress(@PathVariable Long id) {
     return progressService.getAllExercisesForProgress(id);
+  }
+
+  @GetMapping("/{userID}/today")
+  public Boolean progressExistTodayForUser(@PathVariable Long userID) {
+    return progressService.progressExistTodayForUser(userID);
+  }
+
+  @GetMapping("/{userID}/daily")
+  public List<Progress> getProgressesForTodayForUser(@PathVariable Long userID) {
+    return progressService.getProgressesForTodayForUser(userID);
+  }
+
+  @GetMapping("/{userID}/weekly")
+  public List<Progress> getWeeklyProgress(@PathVariable Long userID) {
+    return progressService.getWeeklyProgress(userID);
+  }
+
+  @GetMapping("/{userID}/month")
+  public List<String> progressExistThisMonth(@PathVariable Long userID) {
+    return progressService.progressExistThisMonth(userID);
   }
 
 }

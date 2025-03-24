@@ -73,7 +73,7 @@ public class ProblemController {
     return ResponseEntity.ok(problemService.removeProblemFromUser(userId, problemId));
   }
 
-  @GetMapping("/{id}/problems")
+  @GetMapping("/user/{id}/problems")
   public ResponseEntity<List<Problem>> getUserProblems(@PathVariable Long id) {
     return ResponseEntity.ok(problemService.getUserProblems(id));
   }
