@@ -5,7 +5,7 @@ import java.util.List;
 import com.project.physio_backend.Entities.Prize.Prize;
 
 public interface PrizeService {
-    List<Prize> getAllPrizees();
+  List<Prize> getAllPrizees();
 
   Prize getPrizeById(Long id);
 
@@ -14,5 +14,7 @@ public interface PrizeService {
   Prize updatePrize(Long id, Prize Prize);
 
   void deletePrize(Long id);
+
+  List<Prize> getPrizesForUser(Long userID);
 
 }

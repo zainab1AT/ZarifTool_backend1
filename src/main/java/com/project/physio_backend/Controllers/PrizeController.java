@@ -14,10 +14,10 @@ import com.project.physio_backend.Services.Prize.PrizeService;
 @CrossOrigin
 public class PrizeController {
 
-    @Autowired
-    private PrizeService prizeService;
+  @Autowired
+  private PrizeService prizeService;
 
-    @GetMapping
+  @GetMapping
   public List<Prize> getAllPrizees() {
     return prizeService.getAllPrizees();
   }
@@ -44,5 +44,9 @@ public class PrizeController {
     prizeService.deletePrize(id);
   }
 
-    
+  @GetMapping("/user/{userID}")
+  public List<Prize> getPrizesForUser(@PathVariable Long userID) {
+    return prizeService.getPrizesForUser(userID);
+  }
+
 }

@@ -8,7 +8,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.project.physio_backend.Entities.Physiotherapists.DayOfWeek;
 import com.project.physio_backend.Entities.Physiotherapists.Physiotherapist;
 import com.project.physio_backend.Entities.Physiotherapists.WorkingHours;
-import com.project.physio_backend.Entities.Problems.Problem;
 import com.project.physio_backend.Entities.Users.Location;
 
 import io.jsonwebtoken.io.IOException;
@@ -46,5 +45,7 @@ public interface PhysiotherapistService {
         public ResponseEntity<WorkingHours> updateWorkingDaysForPhysiotherapist(long workingHoursID,
                         DayOfWeek dayOfWeek,
                         String startTime, String endTime);
+
+        public List<Physiotherapist> getPhysiotherapitsWithSameLocationAsUser(Long userID);
 
 }

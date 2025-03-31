@@ -103,7 +103,7 @@ public class ProgressServiceImpl implements ProgressService {
     } else if (progressCount == 21) {
       prizeType = PrizeType.GOLD;
     } else if (progressCount == 28) {
-      prizeType = PrizeType.PRENIUM;
+      prizeType = PrizeType.PREMIUM;
     }
 
     if (prizeType != null) {

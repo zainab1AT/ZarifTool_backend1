@@ -9,12 +9,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.project.physio_backend.Entities.Physiotherapists.DayOfWeek;
-import com.project.physio_backend.Entities.Physiotherapists.Physiotherapist;
-import com.project.physio_backend.Entities.Physiotherapists.WorkingHours;
-import com.project.physio_backend.Entities.Problems.Problem;
+import com.project.physio_backend.Entities.Physiotherapists.*;
 import com.project.physio_backend.Entities.Users.Location;
+import com.project.physio_backend.Entities.Users.Profile;
 import com.project.physio_backend.Exceptions.Physiotherapists.PhysiotherapistNotFoundException;
+import com.project.physio_backend.Exceptions.Users.UserNotFoundException;
 import com.project.physio_backend.Exceptions.WorkingHours.WorkingHoursNotFoundException;
 import com.project.physio_backend.Repositories.*;
 import com.project.physio_backend.Services.ImageService.ImageService;
@@ -27,6 +26,9 @@ public class PhysiotherapistServiceImpl implements PhysiotherapistService {
 
     @Autowired
     private WorkingHoursRepository workingHoursRepository;
+
+    @Autowired
+    private ProfileRepository profileRepository;
 
     @Autowired
     private ImageService imageService;
@@ -157,4 +159,22 @@ public class PhysiotherapistServiceImpl implements PhysiotherapistService {
         workingHour.setEndTime(endTime);
         return ResponseEntity.ok(workingHoursRepository.save(workingHour));
     }
+
+    @Override
+    public List<Physiotherapist> getPhysiotherapitsWithSameLocationAsUser(Long userID) {
+        Profile user = profileRepository.findById(userID)
+                .orElseThrow(() -> new UserNotFoundException(userID));
+
+        Location userLocation = user.getLocation();
+
+        List<Physiotherapist> physiotherapists = physiotherapistRepository.findByLocation(userLocation);
+
+        // If no physiotherapists match the user's location, return all physiotherapists
+        if (physiotherapists.isEmpty()) {
+            return physiotherapistRepository.findAll();
+        }
+
+        return physiotherapists;
+    }
+
 }
