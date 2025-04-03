@@ -6,6 +6,7 @@ import com.project.physio_backend.Exceptions.Users.UserNotFoundException;
 import com.project.physio_backend.Repositories.ProfileRepository;
 import com.project.physio_backend.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,6 +19,8 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
     @Autowired
     private ProfileRepository profileRepository;
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
     @Override
     public List<User> getAllUsers() {
@@ -49,7 +52,11 @@ public class UserServiceImpl implements UserService {
     public User updateUser(Long id, User userDetails) {
         return userRepository.findById(id).map(user -> {
             user.setUsername(userDetails.getUsername());
-            user.setPassword(userDetails.getPassword());
+
+            if (userDetails.getPassword() != null && !userDetails.getPassword().isEmpty()) {
+                user.setPassword(passwordEncoder.encode(userDetails.getPassword()));
+            }
+            
             return userRepository.save(user);
         }).orElseThrow(() -> new UserNotFoundException(id));
     }
@@ -60,5 +67,14 @@ public class UserServiceImpl implements UserService {
             throw new UserNotFoundException(id);
         }
         userRepository.deleteById(id);
+    }
+
+    public boolean validatePassword(Long userId, String password) {
+        Optional<User> userOptional = userRepository.findById(userId);
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            return passwordEncoder.matches(password, user.getPassword());
+        }
+        return false;
     }
 }

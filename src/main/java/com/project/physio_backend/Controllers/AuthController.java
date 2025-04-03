@@ -17,13 +17,14 @@ import org.springframework.web.client.RestTemplate;
 
 import com.project.physio_backend.Entities.Users.User;
 import com.project.physio_backend.Repositories.UserRepository;
-import com.project.physio_backend.security.jwt.JwtUtils;
-import com.project.physio_backend.security.services.UserDetailsImpl;
+import com.project.physio_backend.Security.jwt.JwtUtils;
 import com.project.physio_backend.Services.UserService.UserService;
 import com.project.physio_backend.payload.request.LoginRequest;
 import com.project.physio_backend.payload.request.SignupRequest;
 import com.project.physio_backend.payload.response.JwtResponse;
 import com.project.physio_backend.payload.response.MessageResponse;
+import com.project.physio_backend.Security.services.UserDetailsImpl;
+
 import jakarta.validation.Valid;
 
 // @CrossOrigin(origins = "*", maxAge = 3600)

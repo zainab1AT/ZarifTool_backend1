@@ -1,4 +1,4 @@
-package com.project.physio_backend.security.jwt;
+package com.project.physio_backend.Security.jwt;
 
 import java.security.Key;
 import java.util.Date;
@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
-import com.project.physio_backend.security.services.UserDetailsImpl;
+import com.project.physio_backend.Security.services.UserDetailsImpl;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
