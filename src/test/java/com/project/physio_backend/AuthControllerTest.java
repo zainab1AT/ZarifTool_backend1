@@ -23,8 +23,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 
 import com.project.physio_backend.Entities.Users.User;
 import com.project.physio_backend.Repositories.UserRepository;
-import com.project.physio_backend.security.jwt.JwtUtils;
-import com.project.physio_backend.security.services.UserDetailsImpl;
+import com.project.physio_backend.Security.jwt.JwtUtils;
+import com.project.physio_backend.Security.services.UserDetailsImpl;
 import com.project.physio_backend.payload.request.SignupRequest;
 
 import static io.restassured.RestAssured.given;
