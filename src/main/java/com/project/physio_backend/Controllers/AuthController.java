@@ -24,6 +24,8 @@ import com.project.physio_backend.payload.request.LoginRequest;
 import com.project.physio_backend.payload.request.SignupRequest;
 import com.project.physio_backend.payload.response.JwtResponse;
 import com.project.physio_backend.payload.response.MessageResponse;
+import com.project.physio_backend.Security.services.UserDetailsImpl;
+
 import jakarta.validation.Valid;
 
 // @CrossOrigin(origins = "*", maxAge = 3600)
