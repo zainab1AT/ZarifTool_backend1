@@ -64,6 +64,11 @@ public class PhysiotherapistController {
         return physiotherapistService.getAllPhysiotherapistsforInCity(location);
     }
 
+    @GetMapping("/user/{userID}/location")
+    public List<Physiotherapist> getPhysiotherapitsWithSameLocationAsUser(@PathVariable Long userID) {
+        return physiotherapistService.getPhysiotherapitsWithSameLocationAsUser(userID);
+    }
+
     @PostMapping("/{id}/working-hours/add")
     public ResponseEntity<WorkingHours> addWorkingHours(@PathVariable long id, @RequestBody WorkingHours workingHours) {
         return physiotherapistService.addWorkingHoursToPhysiotherapist(id, workingHours.getDayOfWeek(),

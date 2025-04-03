@@ -15,7 +15,7 @@ public class Prize {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Prize_ID", nullable = false)
-    private Long problemID;
+    private Long prizeID;
 
     private String prizeDescriprion;
 

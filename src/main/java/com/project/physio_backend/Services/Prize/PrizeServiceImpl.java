@@ -18,7 +18,7 @@ import com.project.physio_backend.Repositories.UserRepository;
 
 @Service
 public class PrizeServiceImpl implements PrizeService {
-    @Autowired
+  @Autowired
   private ProblemRepository problemRepository;
 
   @Autowired
@@ -46,7 +46,7 @@ public class PrizeServiceImpl implements PrizeService {
 
     User user = userRepository.findById(userID)
         .orElseThrow(() -> new UserNotFoundException(userID));
-    
+
     Prize.setDay(LocalDate.now());
     Prize.setMonth(LocalDate.now());
 
@@ -69,6 +69,13 @@ public class PrizeServiceImpl implements PrizeService {
   public void deletePrize(Long id) {
     Prize Prize = getPrizeById(id);
     PrizeRepository.delete(Prize);
+  }
+
+  @Override
+  public List<Prize> getPrizesForUser(Long userID) {
+    User user = userRepository.findById(userID)
+        .orElseThrow(() -> new UserNotFoundException(userID));
+    return user.getPrize();
   }
 
 }

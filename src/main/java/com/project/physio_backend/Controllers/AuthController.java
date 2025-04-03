@@ -18,6 +18,7 @@ import org.springframework.web.client.RestTemplate;
 import com.project.physio_backend.Entities.Users.User;
 import com.project.physio_backend.Repositories.UserRepository;
 import com.project.physio_backend.Security.jwt.JwtUtils;
+import com.project.physio_backend.Security.services.UserDetailsImpl;
 import com.project.physio_backend.Services.UserService.UserService;
 import com.project.physio_backend.payload.request.LoginRequest;
 import com.project.physio_backend.payload.request.SignupRequest;

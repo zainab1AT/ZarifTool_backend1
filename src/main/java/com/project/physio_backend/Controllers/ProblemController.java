@@ -73,7 +73,7 @@ public class ProblemController {
     return ResponseEntity.ok(problemService.removeProblemFromUser(userId, problemId));
   }
 
-  @GetMapping("/{id}/problems")
+  @GetMapping("/user/{id}/problems")
   public ResponseEntity<List<Problem>> getUserProblems(@PathVariable Long id) {
     return ResponseEntity.ok(problemService.getUserProblems(id));
   }
@@ -81,6 +81,16 @@ public class ProblemController {
   @PostMapping("/user/{userId}/add-problem/{problemId}")
   public ResponseEntity<User> addProblemToUser(@PathVariable Long userId, @PathVariable Long problemId) {
     return ResponseEntity.ok(problemService.addProblemToUser(userId, problemId));
+  }
+
+  @GetMapping("/names")
+  public ResponseEntity<List<String>> getProblemNames() {
+    return ResponseEntity.ok(problemService.getProblemNames());
+  }
+
+  @GetMapping("/name/{name}")
+  public ResponseEntity<Problem> getProblemByName(@PathVariable String name) {
+    return ResponseEntity.ok(problemService.getProblemByName(name));
   }
 
 }
